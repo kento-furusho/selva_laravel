@@ -57,21 +57,17 @@
         </div>
     @enderror
 
-    <p>性別
-        <input style="margin-left: 20px;" type="radio" name='gender' value='1'
-        @if(old('gender') == '1')
-            {{ 'checked' }}
-        @elseif(!empty($gender) && $gender == '1')
-            {{ 'checked' }}
-        @endif
-        >男性
-        <input type="radio" name='gender' value='2'
-        @if(old('gender') == '2')
-            {{ 'checked' }}
-        @elseif(!empty($gender) && $gender == '2')
-            {{ 'checked' }}
-        @endif
-        >女性
+    {{-- マスター値:config/master.php --}}
+    <p><span style="margin-right: 40px;">性別</span>
+        @foreach(config('master') as $index => $gender)
+            <input type="radio" name="gender" value='{{ $index }}'
+            @if(old('gender') == $index)
+                {{ 'checked' }}
+            @elseif(!empty($ss_gender) && $ss_gender == $index)
+                {{ 'checked' }}
+            @endif
+            >{{ $gender }}
+        @endforeach
     </p>
     @error('gender')
         <div class="err_msg">
