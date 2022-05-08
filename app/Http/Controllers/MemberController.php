@@ -82,6 +82,7 @@ class MemberController extends Controller
             'name_sei' => $data['name_sei'],
             'name_mei' => $data['name_mei'],
             'nickname' => $data['nickname'],
+            'password' => $data['password'],
             'gender' => $data['gender'],
             'email' => $data['email']
         ]);
@@ -91,24 +92,25 @@ class MemberController extends Controller
     // DBに登録
     public function send(Request $request)
     {
-        $data = $request->session()->all();
-
         // パスワードをハッシュ化
-        $hash_password = bcrypt($data['password']);
+        $hash_password = bcrypt($request['password']);
 
         Member::create([
-            'name_sei' => $data['name_sei'],
-            'name_mei' => $data['name_mei'],
-            'nickname' => $data['nickname'],
-            'gender' => $data['gender'],
+            'name_sei' => $request['name_sei'],
+            'name_mei' => $request['name_mei'],
+            'nickname' => $request['nickname'],
+            'gender' => $request['gender'],
             'password' => $hash_password,
-            'email' => $data['email']
+            'email' => $request['email']
         ]);
 
+        // 二重登録防止
+        $request->session()->regenerateToken();
+
         // ここでメールを送信
-        $to = $data['email'];
+        $to = $request['email'];
         Mail::to($to)
-            ->send(new SignupMail());
+        ->send(new SignupMail());
 
         return redirect()
             ->route('member.completed');

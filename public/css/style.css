@@ -42,12 +42,15 @@
   .btn {
     background-color: #FFA149;
     text-decoration: none;
-    padding:11px 30px ;
+    padding:9px 30px ;
     border-radius: 10px;
     color: white;
     font-size: 15px;
     font-weight: bold;
     border-style: none;
+  }
+  .btn:hover {
+    cursor: pointer;
   }
 
   /* 登録確認画面 */
