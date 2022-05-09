@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="jn">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ url('css/style.css') }}">
-  <title>会員情報確認画面</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('title', '会員情報確認')
+@section('content')
   <div class="container">
-        <form id="myForm" action="{{ route('member.send') }}">
+        <form id="myForm" method='post' action="{{ route('member.send') }}">
             @csrf
             <input type="hidden" name="name_sei" value="{{ $name_sei }}">
             <input type="hidden" name="name_mei" value="{{ $name_mei }}">
@@ -57,7 +50,6 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+@endsection
 
 

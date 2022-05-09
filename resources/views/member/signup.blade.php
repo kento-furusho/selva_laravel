@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="{{ url('css/style.css') }}">
-  <title>会員情報登録フォーム</title>
-</head>
-<body>
-<form class='forms' method="post" action="{{ route('member.store')}}">
+@extends('layouts.app')
+@section('title', '会員情報登録')
+@section('content')
+    <form class='forms' method="post" action="{{ route('member.store')}}">
     @csrf
     <h2>会員情報登録</h2>
 
@@ -115,6 +109,10 @@
         <input class="btn" type="submit" value="確認画面へ">
         </a>
     </div>
+    <div class='btn-container'>
+        <a class="back_btn" href="{{ route('member.index') }}">
+            <span>トップに戻る</span>
+        </a>
+    </div>
     </form>
-</body>
-</html>
+@endsection

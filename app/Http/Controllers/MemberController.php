@@ -9,12 +9,25 @@ use Illuminate\Support\Facades\Mail;
 
 class MemberController extends Controller
 {
+    public function index()
+    {
+        // ログイン判断
+        if(session()->has('login_email')) {
+            $name_sei = session()->get('login_name_sei');
+            $name_mei = session()->get('login_name_mei');
+            $full_name = $name_sei.$name_mei;
+            return view('index')
+                ->with('full_name', $full_name);
+        } else {
+            return view('index');
+        }
+    }
 
     public function signup()
     {
         if(session()->has('name_sei')) {
             $data = session()->all();
-            return view('members.signup')
+            return view('member.signup')
             ->with([
                 'name_sei' => $data['name_sei'],
                 'name_mei' => $data['name_mei'],
@@ -24,7 +37,7 @@ class MemberController extends Controller
                 'email' => $data['email']
             ]);
         } else {
-            return view('members.signup');
+            return view('member.signup');
         }
     }
 
@@ -78,7 +91,7 @@ class MemberController extends Controller
     {
         $data = $request->session()->all();
 
-        return view('members.signup_confirm',[
+        return view('member.signup_confirm',[
             'name_sei' => $data['name_sei'],
             'name_mei' => $data['name_mei'],
             'nickname' => $data['nickname'],
@@ -120,6 +133,7 @@ class MemberController extends Controller
     public function completed()
     {
         session()->flush();
-        return view('members.signup_completed');
+        return view('member.signup_completed');
     }
+
 }
