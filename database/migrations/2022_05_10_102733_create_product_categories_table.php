@@ -14,8 +14,10 @@ class CreateProductCategoriesTable extends Migration
     public function up()
     {
         Schema::create('product_categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->comment('カテゴリID');
+            $table->string('name', 255)->comment('カテゴリ名');
             $table->timestamps();
+            $table->softDeletes()->comment('削除日時');
         });
     }
 

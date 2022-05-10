@@ -14,8 +14,11 @@ class CreateProductSubcategoriesTable extends Migration
     public function up()
     {
         Schema::create('product_subcategories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->comment('サブカテゴリID');
+            $table->unsignedBigInteger('product_category_id')->comment('カテゴリID');
+            $table->string('name', 255)->comment('サブカテゴリ名');
             $table->timestamps();
+            $table->softDeletes()->comment('削除日時');
         });
     }
 
