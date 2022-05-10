@@ -43,3 +43,10 @@ Route::post('/login/send', [LoginController::class, 'login_send'])
 
 Route::get('/logout', [LoginController::class, 'logout'])
     ->name('logout');
+
+// パスワードリセット
+// Route::get('/password', [LoginController::class, 'password'])
+//     ->name('password');
+
+// Route::post('/password/reset', [LoginController::class, 'reset'])
+//     ->name('password.reset');

@@ -63,4 +63,12 @@ class LoginController extends Controller
       return redirect()
         ->route('member.index');
   }
+//   public function password()
+//   {
+//     return view('password.password');
+//   }
+//   public function reset(Request $request)
+//   {
+
+//   }
 }
