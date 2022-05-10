@@ -48,7 +48,7 @@ class MemberController extends Controller
             'name_sei' => 'required|max:20',
             'name_mei' => 'required|max:20',
             'nickname' => 'required|max:10',
-            'gender' => 'required|integer',
+            'gender' => 'required|in:1,2',
             'password' => 'required|regex:/^[a-z0-9]{8,20}+$/',
             're_password' => 'required|regex:/^[a-z0-9]{8,20}+$/|same:password',
             'email' => 'required|unique:members|max:200|regex:/^([a-zA-Z0-9])+([a-zA-Z0-9._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9._-]+)+$/'
@@ -61,7 +61,7 @@ class MemberController extends Controller
             'nickname.required' => 'ニックネームは必須です',
             'nickname.max' => 'ニックネームは:max字以内で入力してください',
             'gender.required' => '性別を選択してください',
-            'gender.integer' => '性別を正しく選択してください',
+            'gender.in' => '性別を正しく選択してください',
             'password.required' => 'パスワードは必須です',
             'password.regex' => 'パスワードは8~20文字の半角英数字が使用できます',
             're_password.required' => 'パスワード確認は必須です',
