@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +51,6 @@ Route::get('/logout', [LoginController::class, 'logout'])
 
 // Route::post('/password/reset', [LoginController::class, 'reset'])
 //     ->name('password.reset');
+
+Route::get('/product/create', [ProductController::class, 'create'])
+    ->name('product.create');
