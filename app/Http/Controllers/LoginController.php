@@ -57,12 +57,12 @@ class LoginController extends Controller
         ]);
     }
   }
-  public function logout()
-  {
-      session()->flush();
-      return redirect()
-        ->route('member.index');
-  }
+//   public function logout()
+//   {
+//       session()->flush();
+//       return redirect()
+//         ->route('member.index');
+//   }
 //   public function password()
 //   {
 //     return view('password.password');

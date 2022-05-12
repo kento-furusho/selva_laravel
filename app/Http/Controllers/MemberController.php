@@ -11,16 +11,11 @@ class MemberController extends Controller
 {
     public function index()
     {
-        // ログイン判断
-        if(session()->has('login_email')) {
-            $name_sei = session()->get('login_name_sei');
-            $name_mei = session()->get('login_name_mei');
-            $full_name = $name_sei.$name_mei;
-            return view('index')
-                ->with('full_name', $full_name);
-        } else {
-            return view('index');
-        }
+        $name_sei = session()->get('login_name_sei');
+        $name_mei = session()->get('login_name_mei');
+        $full_name = $name_sei.$name_mei;
+        return view('index')
+            ->with('full_name', $full_name);
     }
 
     public function signup()
