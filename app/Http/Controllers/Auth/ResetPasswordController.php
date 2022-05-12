@@ -27,4 +27,21 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    protected function rules()
+    {
+            return [
+                'token' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|confirmed|regex:/^[a-z0-9]{8,20}+$/',
+            ];
+    }
+    protected function validationErrorMessages()
+    {
+            return [
+                'password.required' => 'パスワードを入力してください',
+                'password.regex' => 'パスワードは8~20文字の半角英数字が使用できます',
+                'password.confirmed' => 'パスワードが一致しません',
+            ];
+    }
 }

@@ -30,5 +30,9 @@ class Member extends Authenticatable
     {
         return $this->hasMany(Product::class);
     }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
 
 }

@@ -60,6 +60,11 @@
                                 {{ __('ログイン') }}
                             </button>
                         </p>
+                        <div class='btn-container'>
+                            <a class="back_btn text-decoration:none;" href="{{ route('member.index') }}">
+                                <span>トップに戻る</span>
+                            </a>
+                        </div>
                         </form>
                 </div>
         </div>

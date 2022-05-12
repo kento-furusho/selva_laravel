@@ -51,8 +51,9 @@
   }
   .btn:hover {
     cursor: pointer;
+    text-decoration: none;
+    color:white;
   }
-
   /* 登録確認画面 */
   .content{
     margin: 0 auto;
@@ -71,6 +72,11 @@
     font-size: 15px;
     font-weight: bold;
     border:#FFA149 1px solid;
+  }
+  .back_btn:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color:#FFA149;
   }
 
   /* 会員登録完了画面 */
@@ -140,6 +146,10 @@
     padding: 12px;
     line-height: 60px;
     font-weight: bold;
+  }
+  .header-btn:hover {
+    text-decoration: none;
+    color:black;
   }
   .right-side-btn {
     margin-right: 20px;

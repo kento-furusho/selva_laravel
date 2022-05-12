@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('title', 'パスワード再設定メール')
+@section('header')
+    @extends('headers.nobtn_header')
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
