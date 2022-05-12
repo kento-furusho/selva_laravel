@@ -41,13 +41,6 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-//自作
-// Route::get('/login', [LoginController::class, 'login'])
-//     ->name('login');
-// Route::post('/login/send', [LoginController::class, 'login_send'])
-//     ->name('login.send');
-// Route::get('/logout', [LoginController::class, 'logout'])
-//     ->name('logout');
 
 // パスワードリセット
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')
