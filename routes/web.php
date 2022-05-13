@@ -55,12 +55,16 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')
     ->name('password.update');
 
-
+// 商品登録
 Route::get('/product/create', [ProductController::class, 'create'])
     ->name('product.create');
 
 Route::get('/product/create/get_subcategory/{category_id}', [ProductController::class, 'get_subcategory'])
     ->name('get_subcategory');
 
-Route::post('/product/create/upload_image', [ProductController::class, 'upload_image'])
-    ->name('upload_image');
+Route::post('/product/create/store_image', [ProductController::class, 'store_image'])
+    ->name('store.image');
+
+Route::get('/product/confirm', [ProductController::class, 'product_confirm'])
+    ->name('product.confirm');
+

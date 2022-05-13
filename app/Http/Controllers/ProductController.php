@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_category;
 use App\Models\Product_subcategory;
+use App\Models\Tmpimg;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -23,22 +25,27 @@ class ProductController extends Controller
         $subcategories = Product_subcategory::where('product_category_id', $request->category_id)->get();
         return(['subcategories' => $subcategories]);
     }
-    // 画像アップロード
-    public function upload_image(Request $request, $id)
+
+    // 画像データ受け取り
+    public function store_image(Request $request)
     {
-        $response = [];
+        dd($request);
+        // 受け取り
+        $img = $request->file('image');
+         // storage/app/img に画像本体を保存
+        $path = $img->store('img');
+        // tmpimgテーブルに画像パスを入れ、idを取得
+        $tmpimg = Tmpimg::create([
+            'path' => $path
+        ]);
+        return response()->json(
+            [
+                'id' => $tmpimg->id
+            ]
+        );
+    }
 
-        $fileName = $request->file('file')->getClientOriginalName();
-
-        $ext = pathinfo($fileName)['extension'];
-        $check_extension = ['jpg', 'jpeg', 'png', 'gif'];
-        if(!in_array($ext, $check_extension, true)){
-            $response = [
-                'is_success' => false,
-                'errors_message' => ["アップロードできる画像はjpg, jpeg, png, gifです"]
-            ];
-            return response()->json($response);
-        }
-        
+    public function product_confirm() {
+        return view('products.confirm');
     }
 }

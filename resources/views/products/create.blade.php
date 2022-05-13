@@ -36,6 +36,11 @@
         <input type="file" class="" id="image_1" name="imege_1" accept="jpg, jpeg, png, gif">
         <input type="button" id="upload_image_1" value="アップロード">
     </div>
+    @error('image_1')
+        <div class="err_msg">
+            {{ $message }}
+        </div>
+    @enderror
 
 
 
@@ -69,35 +74,37 @@
         // 画像アップロード
         $(document).ready(function () {
             $('#upload_image_1').on('click', function() {
-                //ajaxでのcsrfトークン送信
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+                console.log('押された');
+
+                //フォームデータを作成する
+                var fd = new FormData();
                 // アップロードするファイルデータ取得
                 var fileData = document.getElementById("image_1").files[0];
-                //フォームデータを作成する
-                var form = new FormData();
+                fd.append('image', fileData);
+                console.log(fileData);
+                console.log(fd.get('image'));
+                $.ajaxSetup({
+                    headers: {'X-CSRF-Token': $('meta[name=token]').attr('content')}
+                });
                 //フォームデータにアップロードファイルの情報追加
-                form.append("file", fileData);
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('upload_image')}}",
-                    data: form,
+                    url: "{{ route('store.image') }}",
+                    data: fd,
                     processData: false,
                     contentType: false,
-                    success: function (response){
-                        if(response.is_success) {
-                            console.log('成功');
-                        } else {
-                            console.log('失敗');
-                        }
-                    },
-                    error: function (response) {
-                        console.log('失敗');
-                    }
-                });
+                    dataType: 'text'
+                    }).done(function (result) {
+                    if (result == 'success') {
+                        alert('ok');
+                    } else if (result == 'error') {
+                        alert('error');
+                    } else {
+                        alert('その他です');
+
+                    }}).fail(function(data) {
+                        alert('通信に失敗しました')
+                    })
             });
         });
     </script>
