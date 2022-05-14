@@ -64,12 +64,23 @@ Route::get('/product/create', [ProductController::class, 'create'])
 Route::get('/product/create/get_subcategory/{category_id}', [ProductController::class, 'get_subcategory'])
     ->name('get_subcategory');
 
+Route::post('/product/create/store', [ProductController::class, 'product_store'])
+    ->name('product.store');
+
+Route::get('/product/create/confirm', [ProductController::class, 'product_confirm'])
+    ->name('product.confirm');
+
+Route::post('/product/create/send', [ProductController::class, 'product_send'])
+    ->name('product.send');
+
+
 // Route::post('/product/create/store_image', [ProductController::class, 'store_image'])
 //     ->name('store.image');
 
 // Route::get('/product/confirm', [ProductController::class, 'product_confirm'])
 //     ->name('product.confirm');
 
-Route::get('/product/show_image_1/{tmpimg}',function(Tmpimg $tmpimg) {
+// 画像表示
+Route::get('/product/show_image/{tmpimg}',function(Tmpimg $tmpimg) {
       return response()->file(Storage::path($tmpimg->path));
 });
