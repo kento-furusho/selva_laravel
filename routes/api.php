@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductController;
+use App\Models\Tmpimg;
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +21,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('product/create/store_image', [ProductController::class, 'store_image'])
+    ->name('store.image');
+
+// Route::get('show_image_1/{tmpimg}', function(Tmpimg $tmpimg) {
+//         return response()->file(Storage::path($tmpimg->path));
+//   });
+
+// Route::get('show_image_1/{tmpimg}', [ProductController::class, 'show_image_1'])
+// ->name('show.image1');

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Models\Tmpimg;
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,9 +64,12 @@ Route::get('/product/create', [ProductController::class, 'create'])
 Route::get('/product/create/get_subcategory/{category_id}', [ProductController::class, 'get_subcategory'])
     ->name('get_subcategory');
 
-Route::post('/product/create/store_image', [ProductController::class, 'store_image'])
-    ->name('store.image');
+// Route::post('/product/create/store_image', [ProductController::class, 'store_image'])
+//     ->name('store.image');
 
-Route::get('/product/confirm', [ProductController::class, 'product_confirm'])
-    ->name('product.confirm');
+// Route::get('/product/confirm', [ProductController::class, 'product_confirm'])
+//     ->name('product.confirm');
 
+Route::get('/product/show_image_1/{tmpimg}',function(Tmpimg $tmpimg) {
+      return response()->file(Storage::path($tmpimg->path));
+});

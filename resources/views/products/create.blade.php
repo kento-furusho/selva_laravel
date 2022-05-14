@@ -33,6 +33,7 @@
     <p>商品写真</p>
     <div>
         <label for="image_1">写真１</label>
+        <img id="show_image_1">
         <input type="file" class="" id="image_1" name="imege_1" accept="jpg, jpeg, png, gif">
         <input type="button" id="upload_image_1" value="アップロード">
     </div>
@@ -74,7 +75,6 @@
         // 画像アップロード
         $(document).ready(function () {
             $('#upload_image_1').on('click', function() {
-                console.log('押された');
 
                 //フォームデータを作成する
                 var fd = new FormData();
@@ -94,15 +94,11 @@
                     processData: false,
                     contentType: false,
                     dataType: 'text'
-                    }).done(function (result) {
-                    if (result == 'success') {
-                        alert('ok');
-                    } else if (result == 'error') {
-                        alert('error');
-                    } else {
-                        alert('その他です');
-
-                    }}).fail(function(data) {
+                    }).done((data) => {
+                        //取得jsonデータ
+                        var image = JSON.parse(data);
+                        $('#show_image_1').attr('src', 'show_image_1/'+image.id)
+                    }).fail(function(data) {
                         alert('通信に失敗しました')
                     })
             });

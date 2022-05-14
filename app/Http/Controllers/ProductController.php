@@ -9,6 +9,7 @@ use App\Models\Product_subcategory;
 use App\Models\Tmpimg;
 use Illuminate\Support\Facades\Log;
 
+
 class ProductController extends Controller
 {
     public function create()
@@ -29,11 +30,11 @@ class ProductController extends Controller
     // 画像データ受け取り
     public function store_image(Request $request)
     {
-        dd($request);
+        // Log::info('store.image');
         // 受け取り
         $img = $request->file('image');
          // storage/app/img に画像本体を保存
-        $path = $img->store('img');
+        $path = $img->store('images');
         // tmpimgテーブルに画像パスを入れ、idを取得
         $tmpimg = Tmpimg::create([
             'path' => $path
@@ -45,7 +46,5 @@ class ProductController extends Controller
         );
     }
 
-    public function product_confirm() {
-        return view('products.confirm');
-    }
+
 }
