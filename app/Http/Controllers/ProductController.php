@@ -41,6 +41,10 @@ class ProductController extends Controller
                 'image_2' => $data['image_2'],
                 'image_3' => $data['image_3'],
                 'image_4' => $data['image_4'],
+                'image_1_id' => $data['image_1_id'],
+                'image_2_id' => $data['image_2_id'],
+                'image_3_id' => $data['image_3_id'],
+                'image_4_id' => $data['image_4_id'],
                 'explain' => $data['explain']
             ]);
     }
@@ -93,15 +97,54 @@ class ProductController extends Controller
 
         return  $path;
     }
+    public function getImagePath($id)
+    {
+        if ($id === null) {
+            return null;
+        }
+        $path = Tmpimg::find($id)->path;
+        return  $path;
+    }
     public function product_store(Request $request)
     {
         // 商品名とカテゴリーのバリデーション
         $max = Product_category::all()->count();
         $sub_max = Product_subcategory::where('product_category_id', $request->category)->count();
+        if(session()->has('image_1')){
+            $path_1 = $this->getImagePath($request->image_1_id);
+        } else {
+            $path_1 = $this->moveImageToPublic($request->image_1_id);
+        }
+        if(session()->has('image_2')){
+            $path_2 = $this->getImagePath($request->image_2_id);
+        } else {
+            $path_2 = $this->moveImageToPublic($request->image_2_id);
+        }
+        if(session()->has('image_3')){
+            $path_3 = $this->getImagePath($request->image_3_id);
+        } else {
+            $path_3 = $this->moveImageToPublic($request->image_3_id);
+        }
+        if(session()->has('image_4')){
+            $path_4 = $this->getImagePath($request->image_4_id);
+        } else {
+            $path_4 = $this->moveImageToPublic($request->image_4_id);
+        }
+        session()->put([
+            'image_1' => $path_1,
+            'image_2' => $path_2,
+            'image_3' => $path_3,
+            'image_4' => $path_4,
+            'image_1_id' => $request->image_1_id,
+            'image_2_id' => $request->image_2_id,
+            'image_3_id' => $request->image_3_id,
+            'image_4_id' => $request->image_4_id,
+        ]);
+        // ddd(session()->get('image_1'));
         $request->validate([
-            'name' => 'required|max:100',
-            'category' => 'integer|not_in:0|between:1,5',
-            'subcategory' => 'integer|not_in:0|between:1,25',
+        'name' => 'required|max:100',
+        'category' => 'integer|not_in:0|between:1,5',
+        'subcategory' => 'integer|not_in:0|between:1,25',
             'explain' => 'required|max:500',
         ], [
             'name.required' => '商品名は必須です',
@@ -115,20 +158,19 @@ class ProductController extends Controller
             'explain.required' => '商品説明は必須です',
             'explain.max' => '商品説明は500文字以内で入力してください',
         ]);
-
-        $path_1 = $this->moveImageToPublic($request->image_1_id);
-        $path_2 = $this->moveImageToPublic($request->image_2_id);
-        $path_3 = $this->moveImageToPublic($request->image_3_id);
-        $path_4 = $this->moveImageToPublic($request->image_4_id);
         $request->session()->put([
             'name' => $request->name,
             'category' => $request->category,
             'subcategory' => $request->subcategory,
+            'explain' => $request->explain,
             'image_1' => $path_1,
             'image_2' => $path_2,
             'image_3' => $path_3,
             'image_4' => $path_4,
-            'explain' => $request->explain
+            'image_1_id' => $request->image_1_id,
+            'image_2_id' => $request->image_2_id,
+            'image_3_id' => $request->image_3_id,
+            'image_4_id' => $request->image_4_id,
         ]);
 
         return redirect()
@@ -175,7 +217,18 @@ class ProductController extends Controller
 
         // 二重登録防止
         $request->session()->regenerateToken();
-        session()->flush();
+        session()->forget('name');
+        session()->forget('category');
+        session()->forget('subcategory');
+        session()->forget('image_1');
+        session()->forget('image_1_id');
+        session()->forget('image_2');
+        session()->forget('image_2_id');
+        session()->forget('image_3');
+        session()->forget('image_3_id');
+        session()->forget('image_4');
+        session()->forget('image_4_id');
+        session()->forget('explain');
         return redirect()
             ->route('member.index');
     }

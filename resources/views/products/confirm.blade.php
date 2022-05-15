@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('title', '商品登録確認画面')
 @section('content')
-    {{ $name }}
-    {{ $category_id }}
-    {{ $category }}
-    {{ $subcategory_id }}
-    {{ $subcategory }}
     {{-- <img src={{ '../../storage/' . $image_1}}> --}}
     <form id="myForm" method='post' action="{{ route('product.send') }}">
         @csrf

@@ -72,37 +72,71 @@
 
     <p>商品写真</p>
     <div>
-        <label for="image_1">写真１</label>
-        <img id="show_image_1">
-        <input type="file" class="" name='image' id="image_1" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id="image_1_id" name="image_1_id">
+        <label for="image_1">写真2</label>
+        <img id="show_image_1"
+            @if(session()->has('image_1'))
+                src={{ '../../storage/' . session()->get('image_1')}}
+            @endif
+        >
+        <input type="file" class="" id="image_1" accept="jpg, jpeg, png, gif">
+        <input type="hidden" id='image_1_id'
+            @if (session()->has('image_1_id'))
+                value={{ session()->get('image_1_id') }}
+            @endif
+        name="image_1_id">
         <input type="button" id="upload_image_1" value="アップロード">
         <div id="image_1_err"></div>
     </div>
     <div>
-        <label for="image_2">写真２</label>
-        <img id="show_image_2">
+        <label for="image_2">写真2</label>
+        <img id="show_image_2"
+            @if(session()->has('image_2'))
+                src={{ '../../storage/' . session()->get('image_2')}}
+            @endif
+        >
         <input type="file" class="" id="image_2" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id="image_2_id" name="image_2_id">
-        <input type="button" id="upload_image_2" name='image_2' value="アップロード">
+        <input type="hidden" id='image_2_id'
+            @if (session()->has('image_2_id'))
+                value={{ session()->get('image_2_id') }}
+            @endif
+        name="image_2_id">
+        <input type="button" id="upload_image_2" value="アップロード">
         <div id="image_2_err"></div>
     </div>
     <div>
         <label for="image_3">写真3</label>
-        <img id="show_image_3">
+        <img id="show_image_3"
+            @if(session()->has('image_3'))
+                src={{ '../../storage/' . session()->get('image_3')}}
+            @endif
+        >
         <input type="file" class="" id="image_3" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id="image_3_id" name="image_3_id">
-        <input type="button" id="upload_image_3" name='image_3' value="アップロード">
+        <input type="hidden" id='image_3_id'
+            @if (session()->has('image_3_id'))
+                value={{ session()->get('image_3_id') }}
+            @endif
+        name="image_3_id">
+        <input type="button" id="upload_image_3" value="アップロード">
         <div id="image_3_err"></div>
     </div>
     <div>
         <label for="image_4">写真4</label>
-        <img id="show_image_4">
+        <img id="show_image_4"
+            @if(session()->has('image_4'))
+                src={{ '../../storage/' . session()->get('image_4')}}
+            @endif
+        >
         <input type="file" class="" id="image_4" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id="image_4_id" name="image_4_id">
-        <input type="button" id="upload_image_4" name='image_4' value="アップロード">
+        <input type="hidden" id='image_4_id'
+            @if (session()->has('image_4_id'))
+                value={{ session()->get('image_4_id') }}
+            @endif
+        name="image_4_id">
+        <input type="button" id="upload_image_4" value="アップロード">
         <div id="image_4_err"></div>
     </div>
+
+
 
     <div>
         <p>商品説明</p>
