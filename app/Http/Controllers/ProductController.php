@@ -234,4 +234,11 @@ class ProductController extends Controller
     }
 
 
+    // 商品検索
+    public function search_index()
+    {
+        return view('products.search');
+    }
+
+
 }

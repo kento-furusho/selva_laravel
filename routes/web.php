@@ -87,3 +87,7 @@ Route::post('/product/create/send', [ProductController::class, 'product_send'])
 Route::get('/product/show_image/{tmpimg}',function(Tmpimg $tmpimg) {
       return response()->file(Storage::path($tmpimg->path));
 });
+
+// 商品検索
+Route::get('/product/search', [ProductController::class, 'search_index'])
+    ->name('search.index');
