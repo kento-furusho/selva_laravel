@@ -61,6 +61,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')
 Route::get('/product/create', [ProductController::class, 'create'])
     ->name('product.create');
 
+Route::get('/product/back', [ProductController::class, 'back_page'])
+    ->name('product.back');
+
 Route::get('/product/create/get_subcategory/{category_id}', [ProductController::class, 'get_subcategory'])
     ->name('get_subcategory');
 
