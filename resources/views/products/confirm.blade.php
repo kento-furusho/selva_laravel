@@ -15,33 +15,49 @@
 
         <h2 style="margin-top:30px;">会員情報確認画面</h2>
         <div class='content'>
-        <div>
+        <div style="display: inline-block;">
             <p>商品名</p>
-            <p>
-                {{ $name }}
-            </p>
         </div>
-        <div>
+        <span style="margin-left:90px;">
+            {{ $name }}
+        </span><br>
+        <div style="display: inline-block;">
             <p>商品カテゴリ</p>
-            <p>
-                {{ $category }} > {{ $subcategory }}
-            </p>
         </div>
+        <span style="margin-left:40px;">
+            {{ $category }} > {{ $subcategory }}
+        </span>
         <div>
             <p>写真1</p>
-            <img src={{ '../../storage/' . $image_1}}>
+            @if(!empty($image_1))
+                <p style='text-align:center;'>
+                    <img style="width: 175px; height: 175px;" src={{ '../../storage/' . $image_1}}>
+                </p>
+            @endif
         </div>
         <div>
             <p>写真2</p>
-            <img src={{ '../../storage/' . $image_2}}>
+            @if(!empty($image_2))
+                <p style='text-align:center;'>
+                    <img style="width: 175px; height: 175px;" src={{ '../../storage/' . $image_2}}>
+                </p>
+            @endif
         </div>
         <div>
             <p>写真3</p>
-            <img src={{ '../../storage/' . $image_3}}>
+            @if(!empty($image_3))
+                <p style='text-align:center;'>
+                    <img style="width: 175px; height: 175px;" src={{ '../../storage/' . $image_3}}>
+                </p>
+            @endif
         </div>
         <div>
             <p>写真4</p>
-            <img src={{ '../../storage/' . $image_4}}>
+            @if(!empty($image_4))
+                <p style='text-align:center;'>
+                    <img style="width: 175px; height: 175px;" src={{ '../../storage/' . $image_4}}>
+                </p>
+            @endif
         </div>
         <div>
             <p>商品説明</p>

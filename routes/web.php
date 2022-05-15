@@ -59,7 +59,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')
 
 // 商品登録
 Route::get('/product/create', [ProductController::class, 'create'])
-    ->name('product.create');
+    ->name('product.create')->middleware('auth');
 
 Route::get('/product/back', [ProductController::class, 'back_page'])
     ->name('product.back');

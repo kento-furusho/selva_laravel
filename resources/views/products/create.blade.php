@@ -72,67 +72,84 @@
 
     <p>商品写真</p>
     <div>
-        <label for="image_1">写真2</label>
-        <img id="show_image_1"
+        <p style='text-align:center;'><label for="image_1">写真1</label></p>
+        <p style='text-align:center;'>
+            <img id="show_image_1"
             @if(session()->has('image_1'))
+                style="width: 175px; height: 175px;"
                 src={{ '../../storage/' . session()->get('image_1')}}
-            @endif
-        >
+            @endif>
+        </p>
         <input type="file" class="" id="image_1" accept="jpg, jpeg, png, gif">
         <input type="hidden" id='image_1_id'
             @if (session()->has('image_1_id'))
                 value={{ session()->get('image_1_id') }}
             @endif
         name="image_1_id">
-        <input type="button" id="upload_image_1" value="アップロード">
+        <p style='text-align:center;'>
+            <input class='up_btn' type="button" id="upload_image_1" value="アップロード">
+        </p>
         <div id="image_1_err"></div>
     </div>
     <div>
-        <label for="image_2">写真2</label>
+        <p style='text-align:center;'><label for="image_1">写真2</label></p>
+        <p style='text-align:center;'>
         <img id="show_image_2"
             @if(session()->has('image_2'))
+                style="width: 175px; height: 175px;"
                 src={{ '../../storage/' . session()->get('image_2')}}
             @endif
         >
+        </p>
         <input type="file" class="" id="image_2" accept="jpg, jpeg, png, gif">
         <input type="hidden" id='image_2_id'
             @if (session()->has('image_2_id'))
                 value={{ session()->get('image_2_id') }}
             @endif
         name="image_2_id">
-        <input type="button" id="upload_image_2" value="アップロード">
+        <p style='text-align:center;'>
+            <input class='up_btn' type="button" id="upload_image_2" value="アップロード">
+        </p>
         <div id="image_2_err"></div>
     </div>
     <div>
-        <label for="image_3">写真3</label>
+        <p style='text-align:center;'><label for="image_1">写真3</label></p>
+        <p style='text-align:center;'>
         <img id="show_image_3"
             @if(session()->has('image_3'))
+                style="width: 175px; height: 175px;"
                 src={{ '../../storage/' . session()->get('image_3')}}
             @endif
-        >
+        ></p>
         <input type="file" class="" id="image_3" accept="jpg, jpeg, png, gif">
         <input type="hidden" id='image_3_id'
             @if (session()->has('image_3_id'))
                 value={{ session()->get('image_3_id') }}
             @endif
         name="image_3_id">
-        <input type="button" id="upload_image_3" value="アップロード">
+        <p style='text-align:center;'>
+            <input class='up_btn' type="button" id="upload_image_3" value="アップロード">
+        </p>
         <div id="image_3_err"></div>
     </div>
     <div>
-        <label for="image_4">写真4</label>
+        <p style='text-align:center;'><label for="image_1">写真4</label></p>
+        <p style='text-align:center;'>
         <img id="show_image_4"
             @if(session()->has('image_4'))
+                style="width: 175px; height: 175px;"
                 src={{ '../../storage/' . session()->get('image_4')}}
             @endif
-        >
+        ></p>
         <input type="file" class="" id="image_4" accept="jpg, jpeg, png, gif">
         <input type="hidden" id='image_4_id'
             @if (session()->has('image_4_id'))
                 value={{ session()->get('image_4_id') }}
             @endif
         name="image_4_id">
-        <input type="button" id="upload_image_4" value="アップロード">
+        <p style='text-align:center;'>
+            <input class='up_btn' type="button" id="upload_image_4" value="アップロード">
+        </p>
         <div id="image_4_err"></div>
     </div>
 
@@ -146,7 +163,7 @@
             @elseif(!empty($explain))
                 <textarea name="explain" id="" cols="30" rows="10">{{ $explain }}</textarea>
             @else
-                <textarea name="explain" id="" cols="30" rows="10"></textarea>
+                <textarea style='width:455px;' name="explain" id="" cols="30" rows="10"></textarea>
             @endif
         </div>
         <p>
@@ -216,16 +233,16 @@
                         if(data.error){
                             console.log(data.error)
                             if(data.error.includes('The image may not be greater than 10485 kilobytes.')) {
-                                $('#image_1_err').append("<p class='err_msg'>10MBまでの画像がアップロードできます</p>");
+                                alert("10MBまでの画像がアップロードできます");
                             }
                             if(data.error.includes('The image must be an image.')) {
-                                $('#image_1_err').append("<p class='err_msg'>画像ファイルをアップロードしてください</p>");
+                                alert("画像ファイルをアップロードしてください");
                             }
                             if(data.error.includes('The image must be a file of type: jpeg, png, jpg, gif.')) {
-                                $('#image_1_err').append("<p class='err_msg'>アップロード可能な画像ファイルは jpeg, png, jpg, gif です</p>");
+                                alert('アップロード可能な画像ファイルは jpeg, png, jpg, gif です');
                             }
                             if(data.error.includes('The image failed to upload.')) {
-                                $('#image_1_err').append("<p class='err_msg'>アップロードを失敗しました</p>");
+                                alert("アップロードを失敗しました");
                             }
                         } else {
                             console.log(data.path)
@@ -258,16 +275,16 @@
                         if(data.error){
                             console.log(data.error)
                             if(data.error.includes('The image may not be greater than 10485 kilobytes.')) {
-                                $('#image_2_err').append("<p class='err_msg'>10MBまでの画像がアップロードできます</p>");
+                                alert("10MBまでの画像がアップロードできます");
                             }
                             if(data.error.includes('The image must be an image.')) {
-                                $('#image_2_err').append("<p class='err_msg'>画像ファイルをアップロードしてください</p>");
+                                alert("画像ファイルをアップロードしてください");
                             }
                             if(data.error.includes('The image must be a file of type: jpeg, png, jpg, gif.')) {
-                                $('#image_2_err').append("<p class='err_msg'>アップロード可能な画像ファイルは jpeg, png, jpg, gif です</p>");
+                                alert("アップロード可能な画像ファイルは jpeg, png, jpg, gif です");
                             }
                             if(data.error.includes('The image failed to upload.')) {
-                                $('#image_2_err').append("<p class='err_msg'>アップロードを失敗しました</p>");
+                                alert("アップロードを失敗しました");
                             }
                         } else {
                             console.log(data.path)
@@ -300,16 +317,16 @@
                         if(data.error){
                             console.log(data.error)
                             if(data.error.includes('The image may not be greater than 10485 kilobytes.')) {
-                                $('#image_3_err').append("<p class='err_msg'>10MBまでの画像がアップロードできます</p>");
+                                alert("10MBまでの画像がアップロードできます");
                             }
                             if(data.error.includes('The image must be an image.')) {
-                                $('#image_3_err').append("<p class='err_msg'>画像ファイルをアップロードしてください</p>");
+                                alert("画像ファイルをアップロードしてください");
                             }
                             if(data.error.includes('The image must be a file of type: jpeg, png, jpg, gif.')) {
-                                $('#image_3_err').append("<p class='err_msg'>アップロード可能な画像ファイルは jpeg, png, jpg, gif です</p>");
+                                alert("アップロード可能な画像ファイルは jpeg, png, jpg, gif です");
                             }
                             if(data.error.includes('The image failed to upload.')) {
-                                $('#image_3_err').append("<p class='err_msg'>アップロードを失敗しました</p>");
+                                alert("アップロードを失敗しました");
                             }
                         } else {
                             console.log(data.path)
@@ -342,16 +359,16 @@
                         if(data.error){
                             console.log(data.error)
                             if(data.error.includes('The image may not be greater than 10485 kilobytes.')) {
-                                $('#image_4_err').append("<p class='err_msg'>10MBまでの画像がアップロードできます</p>");
+                                alert("10MBまでの画像がアップロードできます");
                             }
                             if(data.error.includes('The image must be an image.')) {
-                                $('#image_4_err').append("<p class='err_msg'>画像ファイルをアップロードしてください</p>");
+                                alert("画像ファイルをアップロードしてください");
                             }
                             if(data.error.includes('The image must be a file of type: jpeg, png, jpg, gif.')) {
-                                $('#image_4_err').append("<p class='err_msg'>アップロード可能な画像ファイルは jpeg, png, jpg, gif です</p>");
+                                alert("アップロード可能な画像ファイルは jpeg, png, jpg, gif です");
                             }
                             if(data.error.includes('The image failed to upload.')) {
-                                $('#image_4_err').append("<p class='err_msg'>アップロードを失敗しました</p>");
+                                alert("アップロードを失敗しました");
                             }
                         } else {
                             console.log(data.path)

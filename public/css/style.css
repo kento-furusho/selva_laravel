@@ -73,6 +73,17 @@
     font-weight: bold;
     border:#FFA149 1px solid;
   }
+.up_btn {
+    background-color: white;
+    text-decoration: none;
+    padding:7px 20px ;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #FFA149;
+    font-size: 15px;
+    font-weight: bold;
+    border:#FFA149 1px solid;
+  }
   .back_btn:hover {
     cursor: pointer;
     text-decoration: none;
