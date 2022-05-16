@@ -104,8 +104,11 @@ Route::get('/product/{product}', [ProductController::class, 'show'])
 Route::get('/review/{product}/create', [ReviewController::class, 'create'])
     ->name('review.create')->middleware('auth');;
 
-Route::get('/review/confirm', [ReviewController::class, 'confirm'])
-    ->name('review.confirm');
+Route::post('/review/{product}/store', [ReviewController::class, 'store'])
+    ->name('review.store');
+
+Route::post('/review/send', [ReviewController::class, 'send'])
+    ->name('review.send');
 
 Route::get('/review/complete', [ReviewController::class, 'complete'])
     ->name('review.complete');

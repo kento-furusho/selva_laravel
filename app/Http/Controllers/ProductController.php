@@ -267,6 +267,8 @@ class ProductController extends Controller
                         ->orWhere('product_content', 'like', '%'.$free_word.'%');})
                 ->orderBy('id', 'desc')
                 ->paginate(10);
+            // 商品レビュー計算（仮）
+            
             return view('products.search')
                     ->with([
                         'categories' => $categories,

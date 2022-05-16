@@ -497,9 +497,6 @@
 .show_category {
     margin-top:20px;
 }
-.show_imgs {
-    /* display:flex; */
-}
 .detail_img{
     height: 175px;
     width:100%;
@@ -520,12 +517,12 @@
     font-size: 15px;
     font-weight: bold;
     border-style: none;
-  }
-  .blue_btn:hover {
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-  }
+}
+.blue_btn:hover {
+cursor: pointer;
+text-decoration: none;
+color: white;
+}
 .show_btn_container {
     margin-top: 80px;
     text-align: right;
@@ -534,4 +531,29 @@
     margin: 0 auto;
     width: 60%;
     margin-top: 15px;
+}
+.review_area form {
+    width: 80%;
+    margin: 0 auto;
+}
+.review_err_msg {
+    color: red;
+    font-size: 11px;
+}
+.comment_area {
+    width: 428px;
+    height: 100px;
+}
+.confirm  {
+    margin-left: 70px;
+}
+.confirm p {
+    display: inline-block;
+    font-weight: bold;
+}
+.confirm_evaluation {
+    margin-right: 100px;
+}
+.confirm_comment {
+    margin-right: 69px;
 }

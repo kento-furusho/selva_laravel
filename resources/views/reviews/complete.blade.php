@@ -4,5 +4,15 @@
     @extends('headers.reviews.complete')
 @endsection
 @section('content')
-
+<div>
+    <p style='text-align:center; margin:80px;'>
+        商品レビューの登録が完了しました。
+    </p>
+    <p class="btn-container">
+        <a href='' class='back_btn_blue'>商品レビュー一覧へ</a>
+    </p>
+    <p class="btn-container">
+        <a href='{{ route('product.show', $product_id) }}' class='blue_btn'>商品詳細に戻る</a>
+    </p>
+</div>
 @endsection
