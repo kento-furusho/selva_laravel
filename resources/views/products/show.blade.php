@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '商品検索')
+@section('title', '商品詳細')
 @section('header')
     @extends('headers.detail_header')
 @endsection
@@ -49,6 +49,11 @@
     </div>
 
     <p class='show_btn_container'>
+        <a class="back_btn_blue" href="{{ route('review.create', $product->id) }}">
+            この商品についてのレビューを登録
+        </a>
+    </p>
+    <p class='show_btn_container' style='margin-top:37px;'>
         <a class="blue_btn" href="{{ url()->previous() }}">
             一覧画面に戻る
         </a>

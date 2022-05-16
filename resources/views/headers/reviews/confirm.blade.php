@@ -3,7 +3,7 @@
     <h2 style="
     line-height: 60px;
     margin-left: 15px;
-    font-size: 22px;
+    font-size: 19px;
     font-weight: bold;">
         商品レビュー登録確認
     </h2>

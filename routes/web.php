@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Tmpimg;
 use Illuminate\Support\Facades\Storage;
 /*
@@ -98,4 +99,17 @@ Route::any('/product/search', [ProductController::class, 'search'])
 // 商品詳細
 Route::get('/product/{product}', [ProductController::class, 'show'])
     ->name('product.show');
+
+//レビュー
+Route::get('/review/{product}/create', [ReviewController::class, 'create'])
+    ->name('review.create')->middleware('auth');;
+
+Route::get('/review/confirm', [ReviewController::class, 'confirm'])
+    ->name('review.confirm');
+
+Route::get('/review/complete', [ReviewController::class, 'complete'])
+    ->name('review.complete');
+
+Route::get('/review/show', [ReviewController::class, 'show'])
+    ->name('review.show');
 
