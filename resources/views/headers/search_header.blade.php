@@ -10,7 +10,7 @@
     </div>
     <div class="header-right">
         @if(auth()->user())
-            <a class="header-btn right-side-btn" href="{{ route('product.create') }}">
+            <a class="header-btn right-side-btn" href="{{ route('product.create')}}">
                 新規商品登録
             </a>
         @endif

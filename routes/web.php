@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// 前のページに戻る
 ////// Member //////
 Route::get('/', [MemberController::class, 'index'])
     ->name('member.index');
@@ -89,5 +89,8 @@ Route::get('/product/show_image/{tmpimg}',function(Tmpimg $tmpimg) {
 });
 
 // 商品検索
-Route::get('/product/search', [ProductController::class, 'search_index'])
+Route::get('/product/search/top', [ProductController::class, 'search_index'])
     ->name('search.index');
+
+Route::any('/product/search', [ProductController::class, 'search'])
+    ->name('product.search');

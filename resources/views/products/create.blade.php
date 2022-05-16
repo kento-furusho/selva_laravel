@@ -184,9 +184,15 @@
         </a>
     </div>
     <div class='btn-container'>
-        <a class="back_btn" href="{{ route('member.index') }}">
-            <span>トップに戻る</span>
-        </a>
+        @if(url()->previous() == 'https://ik1-407-35703.vs.sakura.ne.jp/')
+            <a class="back_btn" href="{{ route('member.index') }}">
+                <span>トップに戻る</span>
+            </a>
+        @else
+            <a class="back_btn" href="{{ route('search.index') }}">
+                <span>商品一覧に戻る</span>
+            </a>
+        @endif
     </div>
     </form>
     <script>

@@ -408,3 +408,77 @@
   .detail_content p {
     margin: 25px 0;
   }
+
+  /* 検索画面 */
+
+.search_area {
+    background-color: white;
+    border: solid 1px black;
+    width: 80%;
+    margin:30px auto;
+}
+.search_form p{
+   text-align: center;
+}
+.pro_search_btn {
+    background: none;
+    font-size: 18px;
+    border: 2px solid;
+    padding: 5px 10px;
+}
+.active{
+    color:gray;
+    background-color: gray;
+}
+.product {
+    margin: 0 auto;
+    height: 200px;
+    width: 65%;
+
+    border-bottom: 1px black solid;
+    margin-top: 15px;
+}
+.product_left {
+    height: 200px;
+    width:50%;
+    float:left;
+}
+.product_right {
+    height: 200px;
+    width:50%;
+    float:right;
+}
+.img{
+    width: 175px;
+    height: 175px;
+}
+.category {
+    display:inline-block;
+    background-color: white;
+    border: solid 1px black;
+    padding:1px 2px;
+}
+.pagination_container {
+    width:88%;
+    height:80px;
+    /* display: flex; */
+}
+.pagination{
+    margin-top: 30px;
+    float: right;
+}
+.back_btn_blue {
+    background-color: white;
+    padding:11px 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #5587e2;
+    font-size: 15px;
+    font-weight: bold;
+    border:#5587e2 1px solid;
+}
+.back_btn_blue:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color:#5587e2;
+  }

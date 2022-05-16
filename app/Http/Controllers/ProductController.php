@@ -10,7 +10,7 @@ use App\Models\Tmpimg;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Validator;
-use Session;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductController extends Controller
@@ -58,7 +58,6 @@ class ProductController extends Controller
     // 画像データ受け取り
     public function store_image(Request $request)
     {
-        Log::info('store.image');
         $validator = Validator::make($request->all(), [
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:10485'
         ]);
@@ -230,14 +229,98 @@ class ProductController extends Controller
         session()->forget('image_4_id');
         session()->forget('explain');
         return redirect()
-            ->route('member.index');
+            ->route('search.index');
     }
 
 
-    // 商品検索
+    // 商品検索ぺーじ
     public function search_index()
     {
-        return view('products.search');
+        $products = Product::orderBy('id', 'desc')->paginate(10);
+        $categories = Product_category::all();
+        $subcategories = Product_subcategory::all();
+        return view('products.search')
+            ->with([
+                'index' => 'index',
+                'products' => $products,
+                'categories' => $categories,
+                'subcategories' => $subcategories,
+            ]);
+    }
+    public function search(Request $request)
+    {
+
+        // Log::info('product.search');
+        // カテゴリ選択用
+        $categories = Product_category::all();
+        $subcategories = Product_subcategory::all();
+        $category_id = $request->category;
+        $subcategory_id = $request->subcategory;
+        $free_word = $request->free_word;
+        // カテゴリ、サブカテゴリ、フリーワード（全て）
+        if(!empty($category_id) && !empty($subcategory_id) && !empty($free_word))
+        {
+            $products = Product::where('product_category_id', $category_id)
+                ->where('product_subcategory_id', $subcategory_id)
+                ->where(function($query)use($free_word){
+                    $query->where('name', 'like', '%'.$free_word.'%')
+                        ->orWhere('product_content', 'like', '%'.$free_word.'%');})
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+            return view('products.search')
+                    ->with([
+                        'categories' => $categories,
+                        'subcategories' => $subcategories,
+                        'products' => $products
+                    ]);
+        // カテゴリ、サブカテゴリ
+        } elseif(!empty($category_id) && !empty($subcategory_id) && empty($free_word))
+        {
+            $products = Product::where('product_category_id', $category_id)
+                ->where('product_subcategory_id', $subcategory_id)
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+            return view('products.search')
+                    ->with([
+                        'categories' => $categories,
+                        'subcategories' => $subcategories,
+                        'products' => $products
+                    ]);
+        // カテゴリのみ(subcategory==0)
+        } elseif(!empty($category_id) && $subcategory_id == 0 && empty($free_word))
+        {
+            $products = Product::where('product_category_id', $category_id)
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+            return view('products.search')
+                    ->with([
+                        'categories' => $categories,
+                        'subcategories' => $subcategories,
+                        'products' => $products
+                    ]);
+        // フリーワードのみ
+        } elseif($category_id == 0 && $subcategory_id == 0 && !empty($free_word))
+        {
+            $products = Product::where('name', 'like', '%'.$free_word.'%')
+                    ->orWhere('product_content', 'like', '%'.$free_word.'%')
+                    ->orderBy('id', 'desc')
+                    ->paginate(10);
+            return view('products.search')
+                    ->with([
+                        'categories' => $categories,
+                        'subcategories' => $subcategories,
+                        'products' => $products
+                    ]);
+        } elseif($category_id == 0 && $subcategory_id == 0 && empty($free_word))
+        {
+            $products = Product::orderBy('id', 'desc')->paginate(10);
+            return view('products.search')
+                    ->with([
+                        'categories' => $categories,
+                        'subcategories' => $subcategories,
+                        'products' => $products
+                    ]);
+        }
     }
 
 
