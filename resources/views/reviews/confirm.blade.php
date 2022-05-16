@@ -10,6 +10,9 @@
     </div>
     <div class='product-right'>
         <p style='margin-top: 20px; display: inline-block;'>{{ $product->name }}</p>
+        <p style='margin-bottom:0;'>
+            {{ (getReviewAverage($product->id)) }}
+        </p>
     </div>
 </div>
 <div class='review_area'>

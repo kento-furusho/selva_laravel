@@ -268,7 +268,7 @@ class ProductController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(10);
             // 商品レビュー計算（仮）
-            
+
             return view('products.search')
                     ->with([
                         'categories' => $categories,
@@ -328,6 +328,7 @@ class ProductController extends Controller
     }
         public function show(Product $product)
         {
+            // ddd(getReviewAverage($product->id));
             $categories = Product_category::all();
             $subcategories = Product_subcategory::all();
             return view('products.show')

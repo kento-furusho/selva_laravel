@@ -5,7 +5,7 @@
     margin-left: 15px;
     font-size: 22px;
     font-weight: bold;">
-        商品一覧
+        商品詳細
     </h2>
     </div>
     <div class="header-right">

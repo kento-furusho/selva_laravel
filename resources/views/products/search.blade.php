@@ -57,6 +57,9 @@
                             {{ $product->name }}
                         </a>
                     </p>
+                    <p style='margin-bottom:0;'>
+                        {{ (getReviewAverage($product->id)) }}
+                    </p>
                     <p class='show_btn_container'>
                         <a class="blue_btn" href="{{ route('product.show', $product->id) }}">
                             詳細

@@ -4,6 +4,7 @@
     @extends('headers.detail_header')
 @endsection
 @section('content')
+{{-- {{ (getReviewAverage($product->id)) }} --}}
 <div class="show_content">
     <p class='show_category'>
         @foreach ($categories as $category)
@@ -46,6 +47,13 @@
         <p>
             {{ $product->product_content }}
         </p>
+        <p>■商品レビュー</p>
+        <p>
+            {{ (getReviewAverage($product->id)) }}
+        </p>
+        <p>
+            <a href="">レビューを見る(後で作る)</a>
+        </p>
     </div>
 
     <p class='show_btn_container'>
@@ -54,7 +62,7 @@
         </a>
     </p>
     <p class='show_btn_container' style='margin-top:37px;'>
-        <a class="blue_btn" href="{{ url()->previous() }}">
+        <a class="blue_btn" href="{{ route('search.index') }}">
             一覧画面に戻る
         </a>
     </p>
