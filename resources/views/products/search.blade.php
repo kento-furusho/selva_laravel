@@ -42,7 +42,7 @@
                     <p class='category'>
                         @foreach ($categories as $category)
                             @if($category->id == $product->product_category_id)
-                                {{ $category->name }}
+                                    {{ $category->name }}
                             @endif
                         @endforeach
                         <span>&gt;</span>
@@ -53,7 +53,14 @@
                         @endforeach
                     </p>
                     <p>
-                        {{ $product->name }}
+                        <a href="{{ route('product.show', $product->id) }}">
+                            {{ $product->name }}
+                        </a>
+                    </p>
+                    <p class='show_btn_container'>
+                        <a class="blue_btn" href="{{ route('product.show', $product->id) }}">
+                            詳細
+                        </a>
                     </p>
                 </div>
             </div>

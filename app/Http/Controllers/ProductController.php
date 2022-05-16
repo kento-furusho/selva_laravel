@@ -321,7 +321,20 @@ class ProductController extends Controller
                         'products' => $products
                     ]);
         }
+
+        // 商品詳細
     }
+        public function show(Product $product)
+        {
+            $categories = Product_category::all();
+            $subcategories = Product_subcategory::all();
+            return view('products.show')
+                ->with([
+                    'product' => $product,
+                    'categories' => $categories,
+                    'subcategories' => $subcategories
+                ]);
+        }
 
 
 }

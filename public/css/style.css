@@ -482,3 +482,51 @@
     text-decoration: none;
     color:#5587e2;
   }
+  /* 詳細画面 */
+.show_content {
+    margin:0 auto;
+    width:70%;
+}
+.show_content h2 {
+    display: inline-block;
+    font-size: 21px;
+    font-weight: bolder;
+    margin-right: 70px;
+    margin-bottom: 23px;
+}
+.show_category {
+    margin-top:20px;
+}
+.show_imgs {
+    /* display:flex; */
+}
+.detail_img{
+    height: 175px;
+    width:100%;
+}
+.show_img {
+    width: 24%;
+    display: inline-block;
+}
+.explain {
+    margin-top: 30px;
+}
+.blue_btn {
+    background-color: #5587e2;
+    text-decoration: none;
+    padding:11px 30px ;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-style: none;
+  }
+  .blue_btn:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
+.show_btn_container {
+    margin-top: 80px;
+    text-align: right;
+}

@@ -94,3 +94,8 @@ Route::get('/product/search/top', [ProductController::class, 'search_index'])
 
 Route::any('/product/search', [ProductController::class, 'search'])
     ->name('product.search');
+
+// 商品詳細
+Route::get('/product/{product}', [ProductController::class, 'show'])
+    ->name('product.show');
+
