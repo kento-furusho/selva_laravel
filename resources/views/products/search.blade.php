@@ -72,7 +72,7 @@
     {{-- ページネーション --}}
     <div class="pagination_container">
         <p class='pagination'>
-            @if(!empty($index))
+            @if(empty(request()->query()))
                 {{ $products->links('vendor.pagination.custom-pagination') }}
             @else
                 {{ $products->appends(request()->query())->links('vendor.pagination.custom-pagination') }}

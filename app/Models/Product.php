@@ -27,4 +27,18 @@ class Product extends Model
     {
         return $this->hasMany(Review::class);
     }
+    public function scopeSearch($query, $category_id, $subcategory_id, $free_word)
+    {
+        return $query->when(isset($category_id), function($q)use($category_id) {
+                return $q->where('product_category_id', $category_id);
+            })
+            ->when(isset($subcategory_id), function($q)use($subcategory_id){
+                return $q->where('product_subcategory_id', $subcategory_id);
+            })
+            ->when(isset($free_word), function($q)use($free_word){
+                $pat = '%' . addcslashes($free_word, '%_\\') . '%';
+                return $q->where('name', 'LIKE', $pat)->orWhere('product_content', 'LIKE', $pat);
+            });
+    }
+
 }
