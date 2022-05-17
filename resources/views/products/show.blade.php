@@ -51,9 +51,15 @@
         <p>
             {{ (getReviewAverage($product->id)) }}
         </p>
-        <p>
-            <a href="">レビューを見る(後で作る)</a>
-        </p>
+        <form method='get' action="{{ route('review.show') }}">
+        @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <p>
+                <a>
+                    <input class="review_btn" type="submit" value="&gt;&gt;レビューを見る">
+                </a>
+            </p>
+        </form>
     </div>
 
     <p class='show_btn_container'>

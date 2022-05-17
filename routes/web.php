@@ -113,6 +113,6 @@ Route::post('/review/send', [ReviewController::class, 'send'])
 Route::get('/review/complete', [ReviewController::class, 'complete'])
     ->name('review.complete');
 
-Route::get('/review/show', [ReviewController::class, 'show'])
+Route::any('/review/show', [ReviewController::class, 'show'])
     ->name('review.show');
 

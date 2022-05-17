@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReviewRequest;
 use App\Models\Review;
+use Illuminate\Support\Facades\Log;
+
 
 class ReviewController extends Controller
 {
@@ -54,8 +56,16 @@ class ReviewController extends Controller
         return view('reviews.complete')
             ->with('product_id', $product_id);
     }
-    public function show()
+    public function show(Request $request)
     {
-
+        Log::info('review.show');
+        $product = Product::findOrFail($request->product_id);
+        $reviews = Review::where('product_id', $request->product_id)->paginate(5);
+        // ddd($reviews);
+        return view('reviews.show')
+            ->with([
+                'reviews' => $reviews,
+                'product' => $product
+            ]);
     }
 }

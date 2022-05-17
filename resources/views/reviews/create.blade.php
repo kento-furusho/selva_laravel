@@ -11,7 +11,7 @@
         <div class='product-right'>
             <p style='margin-top: 20px; display: inline-block;'>{{ $product->name }}</p>
             <p style='margin-bottom:0;'>
-                {{ (getReviewAverage($product->id)) }}
+                {{ '総合評価'.'  '.(getReviewAverage($product->id)) }}
             </p>
         </div>
     </div>
