@@ -7,6 +7,7 @@ use App\Notifications\PasswordResetNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -14,6 +15,7 @@ class Member extends Authenticatable
 {
 
     use Notifiable;
+    use SoftDeletes;
 
     protected $rememberTokenName = false;
 
@@ -23,7 +25,8 @@ class Member extends Authenticatable
         'nickname',
         'gender',
         'password',
-        'email'
+        'email',
+        'deleted_at'
     ];
 
     public function products()

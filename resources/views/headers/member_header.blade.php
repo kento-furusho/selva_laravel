@@ -17,6 +17,9 @@
             <a class="header-btn" href="{{ route('product.create') }}">
                 新規商品登録
             </a>
+            <a style='margin-left: 4px;' class="header-btn" href="{{ route('member.show') }}">
+                マイページ
+            </a>
             <form style='display:inline-block; margin-left: 4px;' method="post" action="{{ route('logout') }}">
             @csrf
                 <a class="header-btn right-side-btn">

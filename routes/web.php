@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Tmpimg;
+use App\Models\Member;
 use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,6 @@ use Illuminate\Support\Facades\Storage;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// 前のページに戻る
 ////// Member //////
 Route::get('/', [MemberController::class, 'index'])
     ->name('member.index');
@@ -37,6 +37,16 @@ Route::post('/member/send', [MemberController::class, 'send'])
 Route::get('/member/signup_completed', [MemberController::class, 'completed'])
     ->name('member.completed');
 
+Route::get('/member/show', [MemberController::class, 'show'])
+    ->name('member.show')->middleware('auth');
+
+Route::get('/member/delete_confirm', [MemberController::class, 'delete_confirm'])
+    ->name('member.delete.confirm')->middleware('auth');
+
+Route::get('/member/delete', function() {
+        Member::find(auth()->user()->id)->delete();
+        return redirect()->route('member.index');
+})->name('member.delete');
 
 ///// Login /////
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -575,3 +575,30 @@ color: white;
     cursor: pointer;
     text-decoration: none;
 }
+/* マイページ画面 */
+.mypage_name {
+    margin-right:102px;
+}
+.mypage_nickname {
+    margin-right:38px;
+}
+.mypage_gender {
+    margin-right:101px;
+}
+.mypage_pass {
+    margin-right:52px;
+}
+.mypage_email {
+    margin-right:24px;
+}
+.mypage_content p {
+    margin:20px;
+}
+.mypage_content{
+    margin: 0 auto;
+    width: 385px;
+}
+.delete_confirm_content p {
+    margin: 40px;
+    text-align: center;
+}

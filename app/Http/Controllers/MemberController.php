@@ -18,6 +18,16 @@ class MemberController extends Controller
             ->with('full_name', $full_name);
     }
 
+    public function show()
+    {
+        return view('member.show');
+    }
+
+    public function delete_confirm()
+    {
+        return view('member.delete_confirm');
+    }
+
     public function signup()
     {
         if(session()->has('name_sei')) {
