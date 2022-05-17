@@ -4,6 +4,7 @@
     @extends('headers.reviews.confirm')
 @endsection
 @section('content')
+{{--  --}}
 <div class='product'>
     <div class='product_left'>
         <img class='img' style='margin-left:27px;' src="{{ '../../storage/' . $product->image_1 }}">
