@@ -141,4 +141,85 @@ class MemberController extends Controller
         return view('member.signup_completed');
     }
 
+    // メンバー情報編集
+    public function editProfile()
+    {
+        return view('member.edit.profile');
+    }
+    public function storeEditProfile(Request $request)
+    {
+        $request->validate([
+            'name_sei' => 'required|max:20',
+            'name_mei' => 'required|max:20',
+            'nickname' => 'required|max:10',
+            'gender' => 'required|in:1,2'
+        ], [
+            'name_sei.required and name_mei.required' => '氏名は必須です',
+            'name_sei.required' => '苗字は必須です',
+            'name_mei.required' => '名前は必須です',
+            'name_sei.max' => '苗字は:max字以内で入力してください',
+            'name_mei.max' => '名前は:max字以内で入力してください',
+            'nickname.required' => 'ニックネームは必須です',
+            'nickname.max' => 'ニックネームは:max字以内で入力してください',
+            'gender.required' => '性別を選択してください',
+            'gender.in' => '性別を正しく選択してください'
+        ]);
+
+        session()->put([
+            'name_sei' => $request->name_sei,
+            'name_mei' => $request->name_mei,
+            'nickname' => $request->nickname,
+            'gender' => $request->gender
+        ]);
+
+        return redirect()->route('confirm.edit.profile');
+    }
+    public function confirmEditProfile()
+    {
+        return view('member.edit.confirm_profile');
+    }
+    public function sendEditProfile(Request $request)
+    {
+        Member::where('id', auth()->user()->id)->update([
+            'name_sei' => $request['name_sei'],
+            'name_mei' => $request['name_mei'],
+            'nickname' => $request['nickname'],
+            'gender' => $request['gender']
+        ]);
+
+        // 二重登録防止
+        $request->session()->regenerateToken();
+
+        session()->forget('name_sei');
+        session()->forget('name_mai');
+        session()->forget('nickname');
+        session()->forget('gender');
+
+        return redirect()
+            ->route('member.show');
+    }
+    public function storeEditPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|regex:/^[a-z0-9]{8,20}+$/',
+            're_password' => 'required|regex:/^[a-z0-9]{8,20}+$/|same:password'
+        ], [
+            'password.required' => 'パスワードは必須です',
+            'password.regex' => 'パスワードは8~20文字の半角英数字が使用できます',
+            're_password.required' => 'パスワード確認は必須です',
+            're_password.regex' => 'パスワードは8~20文字の半角英数字が使用できます',
+            're_password.same' => 'パスワードが一致しません'
+        ]);
+        // パスワードをハッシュ化
+        $hash_password = bcrypt($request->password);
+
+        Member::where('id', auth()->user()->id)->update([
+            'password' => $hash_password
+        ]);
+
+        // 二重登録防止
+        $request->session()->regenerateToken();
+        return redirect()
+            ->route('member.show');
+    }
 }

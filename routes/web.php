@@ -48,6 +48,28 @@ Route::get('/member/delete', function() {
         return redirect()->route('member.index');
 })->name('member.delete');
 
+// 会員情報変更
+Route::get('/member/edit/profile', [MemberController::class, 'editProfile'])
+    ->name('edit.profile');
+
+Route::post('/member/edit/profile/store', [MemberController::class, 'storeEditProfile'])
+    ->name('store.edit.profile');
+
+Route::get('/member/edit/profile/confirm', [MemberController::class, 'confirmEditProfile'])
+    ->name('confirm.edit.profile');
+
+Route::post('/member/edit/profile/send', [MemberController::class, 'sendEditProfile'])
+    ->name('send.edit.profile');
+
+// パスワード変更
+Route::get('/member/edit/password', function() {
+    return view('member.edit.password');
+})->name('edit.password');
+
+Route::post('/member/edit/password/store', [MemberController::class, 'storeEditPassword'])
+    ->name('store.edit.password');
+
+
 ///// Login /////
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 

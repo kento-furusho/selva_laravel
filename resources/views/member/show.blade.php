@@ -22,8 +22,14 @@
             }
             ?>
         </p>
+        <p style="text-align: center; margin:36px;">
+            <a class='blue_btn' href="{{ route('edit.profile') }}">会員情報変更</a>
+        </p>
         <p><span class="mypage_pass">パスワード</span>
             <?= 'セキュリティのため非表示'?>
+        </p>
+        <p style="text-align: center; margin:36px;">
+            <a class='blue_btn' href="{{ route('edit.password') }}">パスワード変更</a>
         </p>
         <p><span class="mypage_email">メールアドレス</span>
             <span style='color: #6495ed;'>
