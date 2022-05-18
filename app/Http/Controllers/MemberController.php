@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SignupMail;
+use App\Mail\EditEmailMail;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
 {
@@ -204,11 +206,11 @@ class MemberController extends Controller
             'password' => 'required|regex:/^[a-z0-9]{8,20}+$/',
             're_password' => 'required|regex:/^[a-z0-9]{8,20}+$/|same:password'
         ], [
-            'password.required' => 'パスワードは必須です',
-            'password.regex' => 'パスワードは8~20文字の半角英数字が使用できます',
-            're_password.required' => 'パスワード確認は必須です',
-            're_password.regex' => 'パスワードは8~20文字の半角英数字が使用できます',
-            're_password.same' => 'パスワードが一致しません'
+            'password.required' => '※パスワードは必須です',
+            'password.regex' => '※パスワードは8~20文字の半角英数字が使用できます',
+            're_password.required' => '※パスワード確認は必須です',
+            're_password.regex' => '※パスワードは8~20文字の半角英数字が使用できます',
+            're_password.same' => '※パスワードが一致しません'
         ]);
         // パスワードをハッシュ化
         $hash_password = bcrypt($request->password);
@@ -221,5 +223,45 @@ class MemberController extends Controller
         $request->session()->regenerateToken();
         return redirect()
             ->route('member.show');
+    }
+    public function storeEditEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|unique:members|max:200|regex:/^([a-zA-Z0-9])+([a-zA-Z0-9._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9._-]+)+$/'
+        ], [
+            'email.required' => '※メールアドレスは必須です',
+            'email.unique' => '※既にメールアドレスが存在しています',
+            'email.regex' => '※正しいメールアドレスを入力してください',
+            'email.max' => '※メールアドレスは:max字以内で入力してください'
+        ]);
+        // 認証コード発行、テーブルに保存
+        $auth_code = str_pad(random_int(0,999999),6,0,STR_PAD_LEFT);
+        Member::where('id', auth()->user()->id)->update(['auth_code' => $auth_code]);
+        // 認証コード送信
+        $newEmail = $request->email;
+        Mail::to($newEmail)
+        ->send(new EditEmailMail($auth_code));
+        // 新アドレスと認証コードをセッションに格納
+        session()->put([
+            'newEmail' => $newEmail
+        ]);
+        // 認証画面に遷移
+        return redirect()
+            ->route('confirm.edit.email');
+    }
+    public function sendEditEmail(Request $request)
+    {
+        Log::info('send.edit.email');
+        $input_auth_code = $request->input_auth_code;
+        $error = '※認証コードが違います';
+        if((int)auth()->user()->auth_code !== (int)$input_auth_code){
+            return view('member.edit.confirm_email')->with(['error' => $error]);
+        } else {
+            $newEmail = session()->get('newEmail');
+            Member::where('id', auth()->user()->id)->update(['email' => $newEmail]);
+            session()->forget('newEmail');
+            return redirect()->route('member.show');
+        }
+
     }
 }

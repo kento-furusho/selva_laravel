@@ -69,6 +69,20 @@ Route::get('/member/edit/password', function() {
 Route::post('/member/edit/password/store', [MemberController::class, 'storeEditPassword'])
     ->name('store.edit.password');
 
+// メアド変更
+Route::get('/member/edit/email', function() {
+    return view('member.edit.email');
+})->name('edit.email');
+
+Route::post('/member/edit/email/store', [MemberController::class, 'storeEditEmail'])
+    ->name('store.edit.email');
+
+Route::get('/member/edit/email/confirm', function() {
+    return view('member.edit.confirm_email');
+})->name('confirm.edit.email');
+
+Route::post('/member/edit/email/send', [MemberController::class, 'sendEditEmail'])
+    ->name('send.edit.email');
 
 ///// Login /////
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
