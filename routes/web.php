@@ -84,6 +84,11 @@ Route::get('/member/edit/email/confirm', function() {
 Route::post('/member/edit/email/send', [MemberController::class, 'sendEditEmail'])
     ->name('send.edit.email');
 
+// レビュー編集
+// レビュー管理画面
+Route::get('member/reviews', [ReviewController::class, 'memberReviews'])
+    ->name('member.reviews');
+
 ///// Login /////
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 

@@ -39,6 +39,9 @@
         <p style="text-align: center; margin:36px;">
             <a class='blue_btn' href="{{ route('edit.email') }}">メールアドレス変更</a>
         </p>
+        <p style="text-align: center; margin:36px;">
+            <a class='blue_btn' href="{{ route('member.reviews') }}">商品レビュー管理</a>
+        </p>
         <p style="text-align: center; margin-top:35px;">
             <a class='back_btn_blue' href="{{ route('member.delete.confirm') }}">退会</a>
         </p>

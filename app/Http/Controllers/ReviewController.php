@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReviewRequest;
 use App\Models\Review;
+use App\Models\Product_category;
+use App\Models\Product_subcategory;
 use Illuminate\Support\Facades\Log;
 
 
@@ -66,6 +68,20 @@ class ReviewController extends Controller
             ->with([
                 'reviews' => $reviews,
                 'product' => $product
+            ]);
+    }
+    public function memberReviews()
+    {
+        $member = auth()->user();
+        $reviews = Review::where('member_id', $member->id)->paginate(3);
+        $categories = Product_category::all();
+        $subcategories = Product_subcategory::all();
+        return view('reviews.edit.index')
+            ->with([
+                'member' => $member,
+                'reviews' => $reviews,
+                'categories' => $categories,
+                'subcategories' => $subcategories,
             ]);
     }
 }
