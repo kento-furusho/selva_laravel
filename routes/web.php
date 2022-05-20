@@ -98,6 +98,12 @@ Route::post('/review/{review}/update/store', [ReviewController::class, 'storeUpd
 Route::post('/review/update/send', [ReviewController::class, 'sendUpdate'])
     ->name('review.update.send');
 
+Route::get('/review/{review}/delete', [ReviewController::class, 'delete'])
+    ->name('review.delete');
+
+Route::get('/review/{review}/delete/send', [ReviewController::class, 'sendDelete'])
+    ->name('review.delete.send');
+
 ///// Login /////
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 

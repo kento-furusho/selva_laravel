@@ -42,7 +42,7 @@
             <p class='confirm_evaluation'>商品評価</p><span>{{ $evaluation }}</span>
         </div>
         <div class='confirm'>
-            <p style='margin-bottom:0;' class='confirm_comment'>商品コメント</p><span>{{ $comment }}</span>
+            <p style='margin-bottom:0;' class='confirm_comment'>商品コメント</p><span>{!! nl2br(e($comment)) !!}</span>
         </div>
 
         <p class="btn-container">

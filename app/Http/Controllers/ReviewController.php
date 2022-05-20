@@ -118,4 +118,14 @@ class ReviewController extends Controller
         session()->forget('comment');
         return view('member.show');
     }
+    public function delete(Review $review)
+    {
+        return view('reviews.edit.delete')
+            ->with(['review' => $review]);
+    }
+    public function sendDelete(Review $review)
+    {
+        Review::find($review->id)->delete();
+        return redirect()->route('member.reviews');
+    }
 }

@@ -63,8 +63,11 @@
                     @endif
                 </p>
                 <p>
-                    <a class="blue_btn" href="{{ route('review.update', $review->id) }}">
+                    <a style='padding:11px 16px; margin-right:14px;'class="blue_btn" href="{{ route('review.update', $review->id) }}">
                         <span>レビュー編集</span>
+                    </a>
+                    <a style='padding:11px 16px;' class="blue_btn" href="{{ route('review.delete', $review->id) }}">
+                        <span>レビュー削除</span>
                     </a>
                 </p>
             </div>
