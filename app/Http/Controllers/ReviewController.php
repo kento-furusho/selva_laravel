@@ -65,10 +65,7 @@ class ReviewController extends Controller
         $reviews = Review::where('product_id', $request->product_id)->paginate(5);
         // ddd($reviews);
         return view('reviews.show')
-            ->with([
-                'reviews' => $reviews,
-                'product' => $product
-            ]);
+            ->with(compact('reviews', 'product'));
     }
     public function memberReviews()
     {
@@ -81,12 +78,7 @@ class ReviewController extends Controller
         $categories = Product_category::all();
         $subcategories = Product_subcategory::all();
         return view('reviews.edit.index')
-            ->with([
-                'member' => $member,
-                'reviews' => $reviews,
-                'categories' => $categories,
-                'subcategories' => $subcategories,
-            ]);
+            ->with(compact('member', 'reviews', 'categories', 'subcategories'));
     }
     public function reviewUpdate(Review $review)
     {
@@ -95,7 +87,7 @@ class ReviewController extends Controller
             'review' => $review
         ]);
     }
-    public function storeUpdate(ReviewRequest $request, Review $review)
+    public function validateUpdate(ReviewRequest $request, Review $review)
     {
         session()->put([
             'evaluation' => $request->evaluation,
@@ -111,8 +103,8 @@ class ReviewController extends Controller
     public function sendUpdate(Request $request)
     {
         Review::where('id', $request->review_id)->update([
-            'evaluation' => $request->evaluation,
-            'comment' => $request->comment
+            'evaluation' => session()->get('evaluation'),
+            'comment' => session()->get('comment')
         ]);
         session()->forget('evaluation');
         session()->forget('comment');

@@ -31,7 +31,7 @@
     </div>
 </div>
 <div class='review_area'>
-    <form method='post' action="{{ route('review.update.store', $review->id) }}">
+    <form method='post' action="{{ route('review.update.validate', $review->id) }}">
     @csrf
         <div>
             <label>商品評価

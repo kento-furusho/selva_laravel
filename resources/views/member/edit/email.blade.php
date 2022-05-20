@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'メールアドレス変更')
 @section('content')
-<form style='width:586px;' class='forms' method="post" action="{{ route('store.edit.email') }}">
+<form style='width:586px;' class='forms' method="post" action="{{ route('validate.edit.email') }}">
     @csrf
     <h2 style='margin-top:45px;'>メールアドレス変更</h2>
 

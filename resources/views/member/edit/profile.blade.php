@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', '会員情報変更')
 @section('content')
-<form class='forms' method="post" action="{{ route('store.edit.profile') }}">
+<form class='forms' method="post" action="{{ route('validate.edit.profile') }}">
     @csrf
     <h2>会員情報登録</h2>
 

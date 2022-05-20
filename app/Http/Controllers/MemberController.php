@@ -148,7 +148,7 @@ class MemberController extends Controller
     {
         return view('member.edit.profile');
     }
-    public function storeEditProfile(Request $request)
+    public function validateEditProfile(Request $request)
     {
         $request->validate([
             'name_sei' => 'required|max:20',
@@ -183,10 +183,10 @@ class MemberController extends Controller
     public function sendEditProfile(Request $request)
     {
         Member::where('id', auth()->user()->id)->update([
-            'name_sei' => $request['name_sei'],
-            'name_mei' => $request['name_mei'],
-            'nickname' => $request['nickname'],
-            'gender' => $request['gender']
+            'name_sei' => session()->get('name_sei'),
+            'name_mei' => session()->get('name_mei'),
+            'nickname' => session()->get('nickname'),
+            'gender' => session()->get('gender')
         ]);
 
         // 二重登録防止
@@ -200,7 +200,7 @@ class MemberController extends Controller
         return redirect()
             ->route('member.show');
     }
-    public function storeEditPassword(Request $request)
+    public function validateEditPassword(Request $request)
     {
         $request->validate([
             'password' => 'required|regex:/^[a-z0-9]{8,20}+$/',
@@ -224,7 +224,7 @@ class MemberController extends Controller
         return redirect()
             ->route('member.show');
     }
-    public function storeEditEmail(Request $request)
+    public function validateEditEmail(Request $request)
     {
         $request->validate([
             'email' => 'required|unique:members|max:200|regex:/^([a-zA-Z0-9])+([a-zA-Z0-9._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9._-]+)+$/'
@@ -264,5 +264,5 @@ class MemberController extends Controller
         }
 
     }
-    
+
 }

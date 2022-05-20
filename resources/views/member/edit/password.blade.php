@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'パスワード変更')
 @section('content')
-<form class='forms' method="post" action="{{ route('store.edit.password') }}">
+<form class='forms' method="post" action="{{ route('validate.edit.password') }}">
     @csrf
     <h2>パスワード変更</h2>
 

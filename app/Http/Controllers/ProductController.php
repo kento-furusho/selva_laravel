@@ -240,11 +240,7 @@ class ProductController extends Controller
         $categories = Product_category::all();
         $subcategories = Product_subcategory::all();
         return view('products.search')
-            ->with([
-                'products' => $products,
-                'categories' => $categories,
-                'subcategories' => $subcategories,
-            ]);
+            ->with(compact('products', 'categories', 'subcategories'));
     }
     public function search(Request $request)
     {
@@ -258,18 +254,14 @@ class ProductController extends Controller
         $free_word = $request->free_word;
 
         // 入力なしで検索の場合
-        if(($category_id==0)&&($subcategory_id==0)&&!isset($free_word)){
+        if(($category_id===0)&&($subcategory_id===0)&&!isset($free_word)){
             return redirect()->route('search.index');
         }
         // ローカルスコープ
         $products = Product::search($category_id, $subcategory_id, $free_word)->orderBy('id', 'desc')->paginate(10);
 
         return view('products.search')
-        ->with([
-            'categories' => $categories,
-            'subcategories' => $subcategories,
-            'products' => $products
-        ]);
+        ->with(compact('categories', 'subcategories', 'products'));
     }
         // 商品詳細
         public function show(Product $product)
@@ -278,11 +270,7 @@ class ProductController extends Controller
             $categories = Product_category::all();
             $subcategories = Product_subcategory::all();
             return view('products.show')
-                ->with([
-                    'product' => $product,
-                    'categories' => $categories,
-                    'subcategories' => $subcategories
-                ]);
+                ->with(compact('product', 'categories', 'subcategories'));
         }
 
 

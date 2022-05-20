@@ -52,8 +52,8 @@ Route::get('/member/delete', function() {
 Route::get('/member/edit/profile', [MemberController::class, 'editProfile'])
     ->name('edit.profile');
 
-Route::post('/member/edit/profile/store', [MemberController::class, 'storeEditProfile'])
-    ->name('store.edit.profile');
+Route::post('/member/edit/profile/store', [MemberController::class, 'validateEditProfile'])
+    ->name('validate.edit.profile');
 
 Route::get('/member/edit/profile/confirm', [MemberController::class, 'confirmEditProfile'])
     ->name('confirm.edit.profile');
@@ -66,16 +66,16 @@ Route::get('/member/edit/password', function() {
     return view('member.edit.password');
 })->name('edit.password');
 
-Route::post('/member/edit/password/store', [MemberController::class, 'storeEditPassword'])
-    ->name('store.edit.password');
+Route::post('/member/edit/password/validate', [MemberController::class, 'validateEditPassword'])
+    ->name('validate.edit.password');
 
 // メアド変更
 Route::get('/member/edit/email', function() {
     return view('member.edit.email');
 })->name('edit.email');
 
-Route::post('/member/edit/email/store', [MemberController::class, 'storeEditEmail'])
-    ->name('store.edit.email');
+Route::post('/member/edit/email/validate', [MemberController::class, 'validateEditEmail'])
+    ->name('validate.edit.email');
 
 Route::get('/member/edit/email/confirm', function() {
     return view('member.edit.confirm_email');
@@ -92,8 +92,8 @@ Route::get('member/reviews', [ReviewController::class, 'memberReviews'])
 Route::get('/review/{review}/update', [ReviewController::class, 'reviewUpdate'])
     ->name('review.update');
 
-Route::post('/review/{review}/update/store', [ReviewController::class, 'storeUpdate'])
-    ->name('review.update.store');
+Route::post('/review/{review}/update/validate', [ReviewController::class, 'validateUpdate'])
+    ->name('review.update.validate');
 
 Route::post('/review/update/send', [ReviewController::class, 'sendUpdate'])
     ->name('review.update.send');
