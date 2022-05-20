@@ -62,6 +62,11 @@
                         {{ $review->comment }}
                     @endif
                 </p>
+                <p>
+                    <a class="blue_btn" href="{{ route('review.update', $review->id) }}">
+                        <span>レビュー編集</span>
+                    </a>
+                </p>
             </div>
         </div>
     @endforeach

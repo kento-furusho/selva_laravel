@@ -89,6 +89,15 @@ Route::post('/member/edit/email/send', [MemberController::class, 'sendEditEmail'
 Route::get('member/reviews', [ReviewController::class, 'memberReviews'])
     ->name('member.reviews');
 
+Route::get('/review/{review}/update', [ReviewController::class, 'reviewUpdate'])
+    ->name('review.update');
+
+Route::post('/review/{review}/update/store', [ReviewController::class, 'storeUpdate'])
+    ->name('review.update.store');
+
+Route::post('/review/update/send', [ReviewController::class, 'sendUpdate'])
+    ->name('review.update.send');
+
 ///// Login /////
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
@@ -153,7 +162,7 @@ Route::get('/product/{product}', [ProductController::class, 'show'])
 
 //レビュー
 Route::get('/review/{product}/create', [ReviewController::class, 'create'])
-    ->name('review.create')->middleware('auth');;
+    ->name('review.create')->middleware('auth');
 
 Route::post('/review/{product}/store', [ReviewController::class, 'store'])
     ->name('review.store');

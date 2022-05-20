@@ -72,8 +72,12 @@ class ReviewController extends Controller
     }
     public function memberReviews()
     {
+        if(session()->has('evaluation') || session()->has('comment')){
+            session()->forget('evaluation');
+            session()->forget('comment');
+        }
         $member = auth()->user();
-        $reviews = Review::where('member_id', $member->id)->paginate(3);
+        $reviews = Review::where('member_id', $member->id)->paginate(5);
         $categories = Product_category::all();
         $subcategories = Product_subcategory::all();
         return view('reviews.edit.index')
@@ -83,5 +87,35 @@ class ReviewController extends Controller
                 'categories' => $categories,
                 'subcategories' => $subcategories,
             ]);
+    }
+    public function reviewUpdate(Review $review)
+    {
+        return view('reviews.edit.update')
+        ->with([
+            'review' => $review
+        ]);
+    }
+    public function storeUpdate(ReviewRequest $request, Review $review)
+    {
+        session()->put([
+            'evaluation' => $request->evaluation,
+            'comment' => $request->comment,
+        ]);
+        return view('reviews.edit.confirm_update')
+            ->with([
+                'evaluation' => $request->evaluation,
+                'comment' => $request->comment,
+                'review' => $review
+            ]);
+    }
+    public function sendUpdate(Request $request)
+    {
+        Review::where('id', $request->review_id)->update([
+            'evaluation' => $request->evaluation,
+            'comment' => $request->comment
+        ]);
+        session()->forget('evaluation');
+        session()->forget('comment');
+        return view('member.show');
     }
 }
