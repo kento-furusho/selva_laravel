@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Administer;
 use Illuminate\Support\Facades\Log;
@@ -15,19 +16,17 @@ class LoginController extends Controller
         return view('admin.login.index');
     }
 
-    public function login(Request $request)
+    public function login(AdminRequest $request)
     {
+
         $credentials = $request->only(['login_id', 'password']);
-        Log::info('admin.login.login');
         if (Auth::guard('administers')->attempt($credentials)) {
             // ログインしたら管理画面トップにリダイレクト
-            return redirect()->route('admin.index')->with([
-                'login_msg' => 'ログインしました。',
-            ]);
+            return redirect()->route('admin.index');
         }
 
         return back()->withErrors([
-            'login' => ['ログインに失敗しました']
+            'login' => ['※IDまたはパスワードに誤りがあります']
         ]);
     }
     public function logout(Request $request)

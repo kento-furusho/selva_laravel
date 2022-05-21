@@ -1,23 +1,39 @@
-<html>
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-  <div class="container">
-    <h1>管理者ログイン</h1>
-    @error('login')
-    <div class="alert alert-danger">
-        &#x26A0; {{ $message }}
-    </div>
-    @enderror
-    <form method="POST" action={{ route('admin.login.login') }}>
+@extends('layouts.admin')
+@section('title', '管理画面')
+@section('header')
+    @extends('headers.admins.logout')
+@endsection
+@section('content')
+    <form class='admin-forms' method="POST" action={{ route('admin.login.login') }}>
       @csrf
-      <label class="mt-3">ログインID</label>
-      <input type="text" name="login_id" class="form-control">
-      <label class="mt-3">パスワード</label>
-      <input class="form-control" type="password" name="password">
-      <button class="btn btn-primary mt-5" type="submit">ログイン</button>
+      <h2>管理画面</h2>
+      <p>
+        <label for="login_id">ログインID</label>
+        <input class='admin_form_email' type="text" name="login_id" value='{{ old('login_id') }}'>
+      </p>
+      @error('login_id')
+        <div style='margin-left:0px;'class="err_msg">
+             {{ $message }}
+        </div>
+      @enderror
+      <p>
+        <label for="password">パスワード</label>
+        <input class='admin_form_pass' type="password" name="password" id='password'>
+      </p>
+      @error('password')
+        <div style='margin-left:0px;'class="err_msg">
+             {{ $message }}
+        </div>
+      @enderror
+      @error('login')
+        <div style='margin-left:0px;'class="err_msg">
+             {{ $message }}
+        </div>
+      @enderror
+      <div class='btn-container login-btn'>
+        <a>
+          <input class="blue_btn" type="submit" value="ログイン">
+        </a>
+      </div>
     </form>
-  </div>
-</body>
-</html>
+@endsection
