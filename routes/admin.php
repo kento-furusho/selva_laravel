@@ -10,11 +10,11 @@ use App\Models\Tmpimg;
 use App\Models\Member;
 use Illuminate\Support\Facades\Storage;
 
-Route::prefix('admin')->group(function() {
-    Route::get('login', [Admin\LoginController::class, 'index'])->name('admin.login.index');
-    Route::post('login', [Admin\LoginController::class, 'login'])->name('admin.login.login');
-    Route::get('logout', [Admin\LoginController::class, 'logout'])->name('admin.login.logout');
-    Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
+// Route::prefix('admin')->group(function() {
+//     Route::get('login', [Admin\LoginController::class, 'index'])->name('admin.login.index');
+//     Route::post('login', [Admin\LoginController::class, 'login'])->name('admin.login.login');
+//     Route::get('logout', [Admin\LoginController::class, 'logout'])->name('admin.login.logout');
+//     Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
 
-});
+// });
 

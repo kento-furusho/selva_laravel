@@ -183,9 +183,20 @@ Route::get('/review/complete', [ReviewController::class, 'complete'])
 Route::any('/review/show', [ReviewController::class, 'show'])
     ->name('review.show');
 
+// 管理
+// Route::get('admin/login', [Admin\LoginController::class, 'index'])->name('admin.login.index');
+
+// Route::post('admin/login', [Admin\LoginController::class, 'login'])->name('admin.login.index');
+
+// Route::get('admin/logout', [Admin\LoginController::class, 'logout'])->name('admin.login.index');
+
+// Route::get('admin/', [Admin\IndexController::class, 'index'])->name('admin.index')->middleware('auth:administers');
+
 Route::prefix('admin')->group(function() {
     Route::get('login', [Admin\LoginController::class, 'index'])->name('admin.login.index');
     Route::post('login', [Admin\LoginController::class, 'login'])->name('admin.login.login');
     Route::get('logout', [Admin\LoginController::class, 'logout'])->name('admin.login.logout');
+});
+Route::prefix('admin')->middleware('auth.admins:administers')->group(function() {
     Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
 });
