@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Models\Tmpimg;
 use App\Models\Member;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -182,3 +183,9 @@ Route::get('/review/complete', [ReviewController::class, 'complete'])
 Route::any('/review/show', [ReviewController::class, 'show'])
     ->name('review.show');
 
+Route::prefix('admin')->group(function() {
+    Route::get('login', [Admin\LoginController::class, 'index'])->name('admin.login.index');
+    Route::post('login', [Admin\LoginController::class, 'login'])->name('admin.login.login');
+    Route::get('logout', [Admin\LoginController::class, 'logout'])->name('admin.login.logout');
+    Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
+});
