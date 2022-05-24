@@ -210,3 +210,15 @@ Route::get('/admin/member/search/order_desc', [Admin\MemberController::class, 'o
     ->name('admin.member.order_desc');
 Route::get('/admin/member/search/order_asc', [Admin\MemberController::class, 'orderAsc'])
     ->name('admin.member.order_asc');
+Route::get('/admin/member/create', [Admin\MemberController::class, 'create'])
+    ->name('admin.member.create');
+Route::get('/admin/member/{member}/edit', [Admin\MemberController::class, 'edit'])
+    ->name('admin.member.edit');
+Route::post('/admin/member/create/store', [Admin\MemberController::class, 'createStore'])
+    ->name('admin.member.create.store');
+Route::post('/admin/member/edit/{member}/store', [Admin\MemberController::class, 'editStore'])
+    ->name('admin.member.edit.store');
+Route::post('/admin/member/create/send', [Admin\MemberController::class, 'createSend'])
+    ->name('admin.member.create.send');
+Route::post('/admin/member/edit/{member}/send', [Admin\MemberController::class, 'editSend'])
+    ->name('admin.member.edit.send');

@@ -5,6 +5,11 @@
     @section('search_title', '会員一覧')
 @endsection
 @section('content')
+<div class='btn-container login-btn'>
+    <a href="{{ route('admin.member.create') }}">
+        <input class="blue_btn" type="submit" value="会員登録">
+    </a>
+</div>
 <form method="get" action="{{ route('admin.member.search') }}">
     @csrf
     <table class="search_table">
@@ -125,7 +130,7 @@
               <td class="member_td">{{ $member->email }}</td>
               <td class="member_td"><?= date('Y/m/d', strtotime($member->created_at))?></td>
               <td class="member_td">
-                <a href="" style="text-decoration:none;">
+                <a href="{{ route('admin.member.edit', $member->id) }}" style="text-decoration:none;">
                   編集
                 </a>
               </td>
