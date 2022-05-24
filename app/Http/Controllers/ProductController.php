@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class ProductController extends Controller
@@ -254,12 +255,15 @@ class ProductController extends Controller
         $free_word = $request->free_word;
 
         // 入力なしで検索の場合
-        if(($category_id===0)&&($subcategory_id===0)&&!isset($free_word)){
+        if(((int)$category_id===0)&&((int)$subcategory_id===0)&&!isset($free_word)){
             return redirect()->route('search.index');
         }
         // ローカルスコープ
+        // \DB::enableQueryLog();
+        // \App\User::all();
         $products = Product::search($category_id, $subcategory_id, $free_word)->orderBy('id', 'desc')->paginate(10);
-
+        // ddd(\DB::getQueryLog());
+        // ddd($products);
         return view('products.search')
         ->with(compact('categories', 'subcategories', 'products'));
     }

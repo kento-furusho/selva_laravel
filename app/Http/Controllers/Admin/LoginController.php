@@ -36,8 +36,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         // ログアウトしたらログインフォームにリダイレクト
-        return redirect()->route('admin.login.index')->with([
-            'logout_msg' => 'ログアウトしました',
-        ]);
+        return redirect()->route('admin.login.index');
     }
 }

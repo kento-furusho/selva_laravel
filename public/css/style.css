@@ -602,3 +602,7 @@ color: white;
     margin: 40px;
     text-align: center;
 }
+.admin_container p{
+    text-align:center;
+    margin:35px;
+}

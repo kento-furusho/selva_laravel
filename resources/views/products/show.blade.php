@@ -61,16 +61,25 @@
             </p>
         </form>
     </div>
-
+    @if(Auth::check())
     <p class='show_btn_container'>
         <a class="back_btn_blue" href="{{ route('review.create', $product->id) }}">
             この商品についてのレビューを登録
         </a>
     </p>
+    @endif
     <p class='show_btn_container' style='margin-top:37px;'>
-        <a class="blue_btn" href="{{ route('search.index') }}">
-            一覧画面に戻る
-        </a>
+        {{-- @if(url()->previous() == 'https://ik1-407-35703.vs.sakura.ne.jp/review/{{ $product->id }}/create') --}}
+        @if(url()->previous() == 'https://ik1-407-35703.vs.sakura.ne.jp/review/'.$product->id.'/create')
+        {{-- @if(url()->previous() == 'https://ik1-407-35703.vs.sakura.ne.jp/review/{$product->id}/create') --}}
+            <a class="blue_btn" href="{{ route('search.index') }}">
+                一覧画面に戻る
+            </a>
+        @else
+            <a class="blue_btn" href="{{ url()->previous() }}">
+                一覧画面に戻る
+            </a>
+        @endif
     </p>
 
 </div>

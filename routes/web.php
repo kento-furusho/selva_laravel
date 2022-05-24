@@ -200,3 +200,13 @@ Route::prefix('admin')->group(function() {
 Route::prefix('admin')->middleware('auth.admins:administers')->group(function() {
     Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
 });
+
+// 会員一覧
+Route::get('/admin/member', [Admin\MemberController::class, 'index'])
+    ->name('admin.member')->middleware('auth.admins:administers');
+Route::get('/admin/member/search', [Admin\MemberController::class, 'search'])
+    ->name('admin.member.search')->middleware('auth.admins:administers');
+Route::get('/admin/member/search/order_desc', [Admin\MemberController::class, 'orderDesc'])
+    ->name('admin.member.order_desc');
+Route::get('/admin/member/search/order_asc', [Admin\MemberController::class, 'orderAsc'])
+    ->name('admin.member.order_asc');
