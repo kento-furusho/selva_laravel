@@ -117,7 +117,7 @@
           <tbody>
             <tr class="member_tds">
               <td class="member_td">{{ $member->id }}</td>
-              <td class="member_td"><a style="text-decoration:none;" href=''>{{ $member->name_sei.' '.$member->name_mei }}</a></td>
+              <td class="member_td"><a style="text-decoration:none;" href='{{ route('admin.member.show', $member->id) }}'>{{ $member->name_sei.' '.$member->name_mei }}</a></td>
               <td class="member_td">
                 <?php
                 if($member->gender == 1) {
@@ -134,7 +134,7 @@
                   編集
                 </a>
               </td>
-              <td><a style="text-decoration:none;" href=''>詳細</a></td>
+              <td><a style="text-decoration:none;" href='{{ route('admin.member.show', $member->id) }}'>詳細</a></td>
             </tr>
           </tbody>
         @endforeach

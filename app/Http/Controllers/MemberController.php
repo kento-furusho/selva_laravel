@@ -264,5 +264,4 @@ class MemberController extends Controller
         }
 
     }
-
 }

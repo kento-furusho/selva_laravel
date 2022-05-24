@@ -197,9 +197,12 @@ Route::prefix('admin')->group(function() {
     Route::post('login', [Admin\LoginController::class, 'login'])->name('admin.login.login');
     Route::get('logout', [Admin\LoginController::class, 'logout'])->name('admin.login.logout');
 });
-Route::prefix('admin')->middleware('auth.admins:administers')->group(function() {
-    Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
-});
+// Route::prefix('admin')->middleware('auth.admins:administers')->group(function() {
+//     Route::get('/', [Admin\IndexController::class, 'index'])->name('admin.index');
+// });
+
+Route::get('/admin', [Admin\IndexController::class, 'index'])
+    ->name('admin.index')->middleware('auth.admins:administers');
 
 // 会員一覧
 Route::get('/admin/member', [Admin\MemberController::class, 'index'])
@@ -222,3 +225,7 @@ Route::post('/admin/member/create/send', [Admin\MemberController::class, 'create
     ->name('admin.member.create.send');
 Route::post('/admin/member/edit/{member}/send', [Admin\MemberController::class, 'editSend'])
     ->name('admin.member.edit.send');
+Route::get('/admin/member/show/{member}', [Admin\MemberController::class, 'show'])
+    ->name('admin.member.show');
+Route::get('/admin/member/{member}/delete', [Admin\MemberController::class, 'delete'])
+    ->name('admin.member.delete');

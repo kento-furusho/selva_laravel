@@ -213,4 +213,15 @@ class MemberController extends Controller
         return redirect()
             ->route('admin.member');
     }
+
+    public function show(Member $member)
+    {
+        return view('admin.member.show')
+            ->with(compact('member'));
+    }
+    public function delete(Member $member)
+    {
+        Member::where('id', $member->id)->delete();
+        return redirect()->route('admin.member');
+    }
 }
