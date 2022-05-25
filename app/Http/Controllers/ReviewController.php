@@ -108,7 +108,7 @@ class ReviewController extends Controller
         ]);
         session()->forget('evaluation');
         session()->forget('comment');
-        return view('member.show');
+        return redirect()->route('member.reviews');
     }
     public function delete(Review $review)
     {

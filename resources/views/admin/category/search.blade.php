@@ -85,7 +85,7 @@
               <td class="member_td">{{ $category->name }}</td>
               <td class="member_td"><?= date('Y/m/d', strtotime($category->created_at))?></td>
               <td class="member_td">
-                <a href="" style="text-decoration:none;">
+                <a href="{{ route('admin.category.edit', $category->id) }}" style="text-decoration:none;">
                   編集
                 </a>
               </td>

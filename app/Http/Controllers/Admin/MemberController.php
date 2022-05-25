@@ -188,7 +188,7 @@ class MemberController extends Controller
         // 二重登録防止
         $request->session()->regenerateToken();
         session()->forget('name_sei');
-        session()->forget('name_mai');
+        session()->forget('name_mei');
         session()->forget('nickname');
         session()->forget('gender');
         session()->forget('password');
@@ -214,7 +214,7 @@ class MemberController extends Controller
         // 二重登録防止
         $request->session()->regenerateToken();
         session()->forget('name_sei');
-        session()->forget('name_mai');
+        session()->forget('name_mei');
         session()->forget('nickname');
         session()->forget('gender');
         session()->forget('password');

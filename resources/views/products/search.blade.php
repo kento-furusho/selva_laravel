@@ -93,11 +93,11 @@
                     url:'/product/create/get_subcategory/'+category_id,
                     type: 'GET'
                 }).done((data) => {
+                    $('#subcategory').append("<option value='0'>--------</option>")
                     $(data.subcategories).each((i, category) => {
 
                         $('#subcategory').append('<option value='+category.id+'>'+category.name+'</option>')
                     })
-                    $('#subcategory').append("<option value='0'>選択しない</option>")
                 })
             })
         })

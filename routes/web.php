@@ -240,5 +240,13 @@ Route::get('/admin/category/search/order_asc', [Admin\CategoryController::class,
     ->name('admin.category.order_asc');
 Route::get('/admin/category/create', [Admin\CategoryController::class, 'create'])
     ->name('admin.category.create');
-Route::get('/admin/category/{Product_category}/edit', [Admin\CategoryController::class, 'edit'])
+Route::get('/admin/category/{product_category}/edit', [Admin\CategoryController::class, 'edit'])
     ->name('admin.category.edit');
+Route::post('/admin/category/create/store', [Admin\CategoryController::class, 'createStore'])
+    ->name('admin.category.create.store');
+Route::post('/admin/category/edit/{product_category}/store', [Admin\CategoryController::class, 'editStore'])
+    ->name('admin.category.edit.store');
+Route::post('/admin/category/create/send', [Admin\CategoryController::class, 'createSend'])
+    ->name('admin.category.create.send');
+Route::post('/admin/category/edit/{product_category}/send', [Admin\CategoryController::class, 'editSend'])
+    ->name('admin.category.edit.send');

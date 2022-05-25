@@ -47,11 +47,10 @@ class Member extends Authenticatable
             $query->when(isset($id), function($q)use($id) {
                 return $q->where('id', $id);
             });
-            $query->when(!empty($man), function($q)use($man){
-                return $q->where('gender', $man);
-            });
-            $query->when(!empty($woman), function($q)use($woman){
-                return $q->where('gender', $woman);
+            $query->when(!empty($man) || !empty($woman), function($q)use($man, $woman){
+                return $q->where(function($q)use($man,$woman){
+                    return $q->where('gender', $man)->orWhere('gender', $woman);
+                });
             });
             $query->when(isset($free_word), function($q)use($free_word){
                 // return $q->where('name_sei', 'LIKE', $pat)->orWhere('name_mei', 'LIKE', $pat)->orWhere('email', 'LIKE', $pat);

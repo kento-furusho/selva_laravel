@@ -7,6 +7,9 @@
     @else
         @section('create_title', '会員登録')
     @endif
+    @section('back_page_btn')
+        <a class="header-btn right-side-btn" href="{{ route('admin.member') }}">一覧に戻る</a>
+    @endsection
 @endsection
 @section('content')
 <div class="container">

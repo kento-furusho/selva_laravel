@@ -3,6 +3,9 @@
 @section('header')
     @extends('headers.admins.create_or_edit')
     @section('create_title', '会員詳細')
+    @section('back_page_btn')
+    <a class="header-btn right-side-btn" href="{{ route('admin.member') }}">一覧に戻る</a>
+    @endsection
 @endsection
 @section('content')
 <div class="container">

@@ -9,6 +9,6 @@
       </h2>
     </div>
     <div class="header-right">
-      <a class="header-btn right-side-btn" href="{{ route('admin.member') }}">一覧に戻る</a>
+        @yield('back_page_btn')
     </div>
 </header>
