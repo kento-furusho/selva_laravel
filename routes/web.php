@@ -229,3 +229,16 @@ Route::get('/admin/member/show/{member}', [Admin\MemberController::class, 'show'
     ->name('admin.member.show');
 Route::get('/admin/member/{member}/delete', [Admin\MemberController::class, 'delete'])
     ->name('admin.member.delete');
+// カテゴリー一覧
+Route::get('/admin/category', [Admin\CategoryController::class, 'index'])
+    ->name('admin.category')->middleware('auth.admins:administers');
+Route::get('/admin/category/search', [Admin\CategoryController::class, 'search'])
+    ->name('admin.category.search')->middleware('auth.admins:administers');
+Route::get('/admin/category/search/order_desc', [Admin\CategoryController::class, 'orderDesc'])
+    ->name('admin.category.order_desc');
+Route::get('/admin/category/search/order_asc', [Admin\CategoryController::class, 'orderAsc'])
+    ->name('admin.category.order_asc');
+Route::get('/admin/category/create', [Admin\CategoryController::class, 'create'])
+    ->name('admin.category.create');
+Route::get('/admin/category/{Product_category}/edit', [Admin\CategoryController::class, 'edit'])
+    ->name('admin.category.edit');

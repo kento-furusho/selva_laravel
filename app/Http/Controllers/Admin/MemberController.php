@@ -32,8 +32,6 @@ class MemberController extends Controller
         // \DB::enableQueryLog();
         $url = Member::search($id, $man, $woman, $free_word);
         $members = $url->orderBy('id', 'desc')->paginate(10);
-        session()->put('order', 'desc');
-        // ddd(\DB::getQueryLog());
         session()->forget('order');
         session()->put('order', 'desc');
         return view('admin.member.search')
@@ -189,6 +187,12 @@ class MemberController extends Controller
 
         // 二重登録防止
         $request->session()->regenerateToken();
+        session()->forget('name_sei');
+        session()->forget('name_mai');
+        session()->forget('nickname');
+        session()->forget('gender');
+        session()->forget('password');
+        session()->forget('email');
 
         return redirect()
             ->route('admin.member');
@@ -209,6 +213,12 @@ class MemberController extends Controller
 
         // 二重登録防止
         $request->session()->regenerateToken();
+        session()->forget('name_sei');
+        session()->forget('name_mai');
+        session()->forget('nickname');
+        session()->forget('gender');
+        session()->forget('password');
+        session()->forget('email');
 
         return redirect()
             ->route('admin.member');
