@@ -246,7 +246,7 @@ class CategoryController extends Controller
         Product_category::where('id', $product_category->id)->update([
             'name' => $request->product_category
         ]);
-        Product_subcategory::where('product_category_id', $product_category->id)->delete();
+        Product_subcategory::where('product_category_id', $product_category->id)->forceDelete();
         Product_subcategory::create([
             'product_category_id' => $product_category->id,
             'name' => $request->subcategory_1,
@@ -322,5 +322,16 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('admin.category');
+    }
+    public function show(Product_category $product_category)
+    {
+        return view('admin.category.show')
+            ->with(compact('product_category'));
+    }
+    public function delete(Product_category $product_category)
+    {
+        Product_category::where('id', $product_category->id)->delete();
+        Product_subcategory::where('product_category_id', $product_category->id)->delete();
+        return redirect()->route('admin.category');
     }
 }

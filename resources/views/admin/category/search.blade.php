@@ -5,7 +5,7 @@
     @section('search_title', '商品カテゴリー一覧')
 @endsection
 @section('content')
-<div class='btn-container login-btn'>
+<div class='btn-container'>
     <a href="{{ route('admin.category.create') }}">
         <input class="blue_btn" type="submit" value="商品カテゴリー登録">
     </a>
@@ -89,7 +89,7 @@
                   編集
                 </a>
               </td>
-              <td><a style="text-decoration:none;" href=''>詳細</a></td>
+              <td><a style="text-decoration:none;" href='{{ route('admin.category.show', $category->id) }}'>詳細</a></td>
             </tr>
           </tbody>
         @endforeach

@@ -5,7 +5,7 @@
     @section('search_title', '会員一覧')
 @endsection
 @section('content')
-<div class='btn-container login-btn'>
+<div class='btn-container'>
     <a href="{{ route('admin.member.create') }}">
         <input class="blue_btn" type="submit" value="会員登録">
     </a>

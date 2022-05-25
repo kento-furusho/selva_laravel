@@ -250,3 +250,7 @@ Route::post('/admin/category/create/send', [Admin\CategoryController::class, 'cr
     ->name('admin.category.create.send');
 Route::post('/admin/category/edit/{product_category}/send', [Admin\CategoryController::class, 'editSend'])
     ->name('admin.category.edit.send');
+Route::get('/admin/category/show/{product_category}', [Admin\CategoryController::class, 'show'])
+    ->name('admin.category.show');
+Route::get('/admin/category/{product_category}/delete', [Admin\CategoryController::class, 'delete'])
+    ->name('admin.category.delete');
