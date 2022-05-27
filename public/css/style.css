@@ -551,6 +551,9 @@ color: white;
 .confirm_evaluation {
     margin: 0px 83px 10px 30px;
 }
+.confirm_id {
+    margin: 0px 98px 10px 30px;
+}
 .confirm_comment {
     margin: 0px 30px 0px 30px;
 }

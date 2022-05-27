@@ -108,7 +108,7 @@
             </div>
             <div class='confirm comment_border' style="text-align: right;">
                 <p>
-                    <a class='admin_review_show_btn' href="{{ route('product.show', $product->id) }}">
+                    <a class='admin_review_show_btn' href="{{ route('admin.review.show', $review->id) }}">
                         商品レビュー詳細
                     </a>
                 </p>

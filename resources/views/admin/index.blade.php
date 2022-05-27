@@ -19,4 +19,9 @@
         <a class='back_btn_blue' href="{{ route('admin.product') }}">商品一覧</a>
     </p>
 </div>
+<div class='admin_container'>
+    <p style='padding:15px 35px;'>
+        <a class='back_btn_blue' href="{{ route('admin.review') }}">商品レビュー一覧</a>
+    </p>
+</div>
 @endsection

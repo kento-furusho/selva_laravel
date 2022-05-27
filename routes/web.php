@@ -290,3 +290,29 @@ Route::get('/admin/product/show/{product}', [Admin\ProductController::class, 'sh
     ->name('admin.product.show');
 Route::get('/admin/product/{product}/delete', [Admin\ProductController::class, 'delete'])
     ->name('admin.product.delete');
+
+// レビュー一覧
+
+Route::get('/admin/review', [Admin\ReviewController::class, 'index'])->name('admin.review')->middleware('auth.admins:administers');
+Route::get('/admin/review/search', [Admin\ReviewController::class, 'search'])
+    ->name('admin.review.search')->middleware('auth.admins:administers');
+Route::get('/admin/review/search/order_desc', [Admin\ReviewController::class, 'orderDesc'])
+    ->name('admin.review.order_desc');
+Route::get('/admin/review/search/order_asc', [Admin\ReviewController::class, 'orderAsc'])
+    ->name('admin.review.order_asc');
+Route::get('/admin/review/create', [Admin\ReviewController::class, 'create'])
+    ->name('admin.review.create');
+Route::get('/admin/review/{review}/edit', [Admin\ReviewController::class, 'edit'])
+    ->name('admin.review.edit');
+// Route::post('/admin/review/create/store', [Admin\ReviewController::class, 'createStore'])
+//     ->name('admin.review.create.store');
+Route::post('/admin/review/edit/{review}/store', [Admin\ReviewController::class, 'editStore'])
+    ->name('admin.review.edit.store');
+// Route::post('/admin/review/create/send', [Admin\ReviewController::class, 'createSend'])
+//     ->name('admin.review.create.send');
+Route::post('/admin/review/edit/{review}/send', [Admin\ReviewController::class, 'editSend'])
+    ->name('admin.review.edit.send');
+Route::get('/admin/review/show/{review}', [Admin\ReviewController::class, 'show'])
+    ->name('admin.review.show');
+Route::get('/admin/review/{review}/delete', [Admin\ReviewController::class, 'delete'])
+    ->name('admin.review.delete');
