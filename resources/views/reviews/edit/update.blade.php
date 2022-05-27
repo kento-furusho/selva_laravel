@@ -37,17 +37,17 @@
             <label>商品評価
                 <select name="evaluation">
                     @for($i=1; $i<6;$i++)
-                    <option value={{ $i }}
-                    @if($i == old('evaluation'))
-                        {{ 'selected' }}
-                    @elseif(session()->has('evaluation') && (int)session()->get('evaluation') === (int)$i)
-                        {{ 'selected' }}
-                    @elseif($review->evaluation === $i && session()->has('evaluation') === false)
-                        {{ 'selected' }}
-                    @endif
-                    >
-                        {{ $i }}
-                    </option>
+                        <option value={{ $i }}
+                        @if($i == old('evaluation'))
+                            {{ 'selected' }}
+                        @elseif(session()->has('evaluation') && (int)session()->get('evaluation') === (int)$i && empty(old('evaluation')))
+                            {{ 'selected' }}
+                        @elseif($review->evaluation === $i && session()->has('evaluation') === false && empty(old('evaluation')))
+                            {{ 'selected' }}
+                        @endif
+                        >
+                            {{ $i }}
+                        </option>
                     @endfor
                 </select>
             </label>
