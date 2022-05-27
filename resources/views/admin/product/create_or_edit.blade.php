@@ -21,6 +21,13 @@
 ">
     @csrf
     <p>
+        @if(!empty($product))
+            {{ 'ID'.'  '.$product->id }}
+        @else
+            {{ 'ID  登録後に自動採番' }}
+        @endif
+    </p>
+    <p>
         <label for="name">商品名</label>
         <input style="margin-left: 21px;" class='form_last_3' type="text" name='name' id='name'
         @if(old('name'))
