@@ -44,5 +44,17 @@ class Product extends Model
                 });
             });
     }
+    public function scopeAdminsearch($query, $id, $free_word)
+    {
+            $query->when(isset($id), function($q)use($id) {
+                return $q->where('id', $id);
+            });
+            $query->when(isset($free_word), function($q)use($free_word){
+                return $q->where(function($q)use($free_word){
+                    $pat = '%' . addcslashes($free_word, '%_\\') . '%';
+                    $q->where('name', 'LIKE', $pat)->orWhere('product_content', 'LIKE', $pat);
+                });
+            });
+    }
 
 }

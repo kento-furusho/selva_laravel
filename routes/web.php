@@ -155,6 +155,12 @@ Route::post('/product/create/send', [ProductController::class, 'product_send'])
 Route::get('/product/show_image/{tmpimg}',function(Tmpimg $tmpimg) {
       return response()->file(Storage::path($tmpimg->path));
 });
+Route::get('admin/product/show_image/{tmpimg}',function(Tmpimg $tmpimg) {
+      return response()->file(Storage::path($tmpimg->path));
+});
+Route::get('admin/product/edit/show_image/{tmpimg}',function(Tmpimg $tmpimg) {
+      return response()->file(Storage::path($tmpimg->path));
+});
 
 // 商品検索
 Route::get('/product/search/top', [ProductController::class, 'search_index'])
@@ -254,3 +260,33 @@ Route::get('/admin/category/show/{product_category}', [Admin\CategoryController:
     ->name('admin.category.show');
 Route::get('/admin/category/{product_category}/delete', [Admin\CategoryController::class, 'delete'])
     ->name('admin.category.delete');
+// 商品一覧
+Route::get('/admin/product', [Admin\ProductController::class, 'index'])
+    ->name('admin.product')->middleware('auth.admins:administers');
+Route::get('/admin/product/search', [Admin\ProductController::class, 'search'])
+    ->name('admin.product.search')->middleware('auth.admins:administers');
+Route::get('/admin/product/search/order_desc', [Admin\ProductController::class, 'orderDesc'])
+    ->name('admin.product.order_desc');
+Route::get('/admin/product/search/order_asc', [Admin\ProductController::class, 'orderAsc'])
+    ->name('admin.product.order_asc');
+Route::get('/admin/product/create', [Admin\ProductController::class, 'create'])
+    ->name('admin.product.create');
+Route::get('/admin/product/edit/{product}/', [Admin\ProductController::class, 'edit'])
+    ->name('admin.product.edit');
+Route::post('/admin/product/create/store', [Admin\ProductController::class, 'createStore'])
+    ->name('admin.product.create.store');
+Route::get('/admin/product/create/confirm', [Admin\ProductController::class, 'createConfirm'])
+    ->name('admin.product.create.confirm');
+Route::get('/admin/product/edit/{product}/confirm', [Admin\ProductController::class, 'editConfirm'])
+    ->name('admin.product.edit.confirm');
+
+Route::post('/admin/product/edit/{product}/store', [Admin\ProductController::class, 'editStore'])
+    ->name('admin.product.edit.store');
+Route::post('/admin/product/create/send', [Admin\ProductController::class, 'createSend'])
+    ->name('admin.product.create.send');
+Route::post('/admin/product/edit/{product}/send', [Admin\ProductController::class, 'editSend'])
+    ->name('admin.product.edit.send');
+Route::get('/admin/product/show/{product}', [Admin\ProductController::class, 'show'])
+    ->name('admin.product.show');
+Route::get('/admin/product/{product}/delete', [Admin\ProductController::class, 'delete'])
+    ->name('admin.product.delete');

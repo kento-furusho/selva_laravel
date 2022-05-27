@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '管理画面')
+@section('title', '会員管理画面')
 @section('header')
     @extends('headers.admins.search')
     @section('search_title', '会員一覧')

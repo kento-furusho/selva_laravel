@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin;
 use App\Models\Tmpimg;
 use Illuminate\Support\Facades\Storage;
 /*
@@ -23,6 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('product/create/store_image', [ProductController::class, 'store_image'])
     ->name('store.image');
+
+// 必要なかった
+// Route::post('admin/product/store_image', [Admin\ProductController::class, 'store_image'])
+//     ->name('admin.store.image');
 
 // Route::get('show_image_1/{tmpimg}', function(Tmpimg $tmpimg) {
 //         return response()->file(Storage::path($tmpimg->path));
