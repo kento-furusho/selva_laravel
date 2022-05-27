@@ -13,7 +13,7 @@
         <input type="hidden" name="image_4" value="{{ $image_4 }}">
         <input type="hidden" name="explain" value="{{ $explain }}">
 
-        <h2 style="margin-top:30px;">会員情報確認画面</h2>
+        <h2 style="margin-top:30px;">商品登録確認画面</h2>
         <div class='content'>
         <div style="display: inline-block;">
             <p>商品名</p>

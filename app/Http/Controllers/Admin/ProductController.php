@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\Tmpimg;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Product_category;
 use App\Models\Product_subcategory;
 use Illuminate\Http\Request;
@@ -388,8 +389,11 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $categories = Product_category::all();
+        $subcategories = Product_subcategory::all();
+        $reviews = Review::where('product_id', $product->id)->paginate(3);
         return view('admin.product.show')
-            ->with(compact('product'));
+            ->with(compact('product', 'reviews', 'categories', 'subcategories'));
     }
     public function delete(Product $product)
     {

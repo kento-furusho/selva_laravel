@@ -31,6 +31,16 @@
 
     <div class='content'>
     <div style="display: inline-block;">
+        <p>ID</p>
+    </div>
+    <span style="margin-left:90px;">
+        @if(!empty($product))
+            {{ $product->id }}
+        @else
+            {{ '登録後に自動採番' }}
+        @endif
+    </span><br>
+    <div style="display: inline-block;">
         <p>商品名</p>
     </div>
     <span style="margin-left:90px;">

@@ -30,8 +30,8 @@
                 </span>
                 <span>{{ $review->evaluation }}</span>
             </div>
-            <div class='confirm'>
-                <p class='confirm_comment' style='margin-right:120px;'>商品コメント</p><span>{{ $review->comment }}</span>
+            <div class='confirm comment_border'>
+                <p class='confirm_comment' style='margin-bottom:15px;'>商品コメント<span style='margin-left:120px;'>{{ $review->comment }}</span></p>
             </div>
         </div>
     @endforeach
