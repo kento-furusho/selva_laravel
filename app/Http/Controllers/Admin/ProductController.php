@@ -214,22 +214,24 @@ class ProductController extends Controller
     {
         $max = Product_category::all()->count();
         $sub_max = Product_subcategory::where('product_category_id', $request->category)->count();
-        if(!empty(Tmpimg::find($request->image_1_id))){
+        // ddd(Tmpimg::where('id', $request->image_1_id)->first()->path);
+        if(session()->has('image_1') || Tmpimg::where('id', $request->image_1_id)->first()->path === $product->image_1){
             $path_1 = $this->getImagePath($request->image_1_id);
+            // ddd($path_1);
         } else {
             $path_1 = $this->moveImageToPublic($request->image_1_id);
         }
-        if(session()->has('image_2')){
+        if(session()->has('image_2') || Tmpimg::where('id', $request->image_2_id)->first()->path === $product->image_2){
             $path_2 = $this->getImagePath($request->image_2_id);
         } else {
             $path_2 = $this->moveImageToPublic($request->image_2_id);
         }
-        if(session()->has('image_3')){
+        if(session()->has('image_3') || Tmpimg::where('id', $request->image_3_id)->first()->path === $product->image_3){
             $path_3 = $this->getImagePath($request->image_3_id);
         } else {
             $path_3 = $this->moveImageToPublic($request->image_3_id);
         }
-        if(session()->has('image_4')){
+        if(session()->has('image_4') || Tmpimg::where('id', $request->image_4_id)->first()->path === $product->image_4){
             $path_4 = $this->getImagePath($request->image_4_id);
         } else {
             $path_4 = $this->moveImageToPublic($request->image_4_id);

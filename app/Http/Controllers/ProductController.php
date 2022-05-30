@@ -145,7 +145,7 @@ class ProductController extends Controller
         'name' => 'required|max:100',
         'category' => 'integer|not_in:0|between:1,5',
         'subcategory' => 'integer|not_in:0|between:1,25',
-            'explain' => 'required|max:500',
+        'explain' => 'required|max:500',
         ], [
             'name.required' => '商品名は必須です',
             'name.max' => '商品名は100文字以内で入力してください',

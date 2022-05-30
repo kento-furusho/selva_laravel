@@ -56,7 +56,13 @@
         <p>写真1</p>
         @if(!empty($image_1))
             <p style='text-align:center;'>
-                <img style="width: 175px; height: 175px;" src={{ '../../../../storage/' . $image_1}}>
+                <img style="width: 175px; height: 175px;"
+                @if(!empty($product))
+                    src={{ '../../../../storage/' . session()->get('image_1')}}
+                @else
+                    src={{ '../../../storage/' . session()->get('image_1')}}
+                @endif
+                >
             </p>
         @endif
     </div>
@@ -64,7 +70,12 @@
         <p>写真2</p>
         @if(!empty($image_2))
             <p style='text-align:center;'>
-                <img style="width: 175px; height: 175px;" src={{ '../../../storage/' . $image_2}}>
+                <img style="width: 175px; height: 175px;"
+                @if(!empty($product))
+                    src={{ '../../../../storage/' . session()->get('image_2')}}
+                @else
+                    src={{ '../../../storage/' . session()->get('image_2')}}
+                @endif>
             </p>
         @endif
     </div>
@@ -72,7 +83,12 @@
         <p>写真3</p>
         @if(!empty($image_3))
             <p style='text-align:center;'>
-                <img style="width: 175px; height: 175px;" src={{ '../../../storage/' . $image_3}}>
+                <img style="width: 175px; height: 175px;"
+                @if(!empty($product))
+                    src={{ '../../../../storage/' . session()->get('image_3')}}
+                @else
+                    src={{ '../../../storage/' . session()->get('image_3')}}
+                @endif>
             </p>
         @endif
     </div>
@@ -80,7 +96,12 @@
         <p>写真4</p>
         @if(!empty($image_4))
             <p style='text-align:center;'>
-                <img style="width: 175px; height: 175px;" src={{ '../../../storage/' . $image_4}}>
+                <img style="width: 175px; height: 175px;"
+                @if(!empty($product))
+                    src={{ '../../../../storage/' . session()->get('image_4')}}
+                @else
+                    src={{ '../../../storage/' . session()->get('image_4')}}
+                @endif>
             </p>
         @endif
     </div>

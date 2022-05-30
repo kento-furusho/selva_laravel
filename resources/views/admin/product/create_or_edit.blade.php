@@ -19,6 +19,8 @@
     {{ route('admin.product.create.store') }}
 @endif
 ">
+
+
     @csrf
     <p>
         @if(!empty($product))
@@ -95,18 +97,23 @@
 
     <p>商品写真</p>
     <div>
-        <p style='text-align:center;'><label for="image_1">写真1</label></p>
+        <p style='text-align:center;'>写真1</p>
         <p style='text-align:center;'>
             <img id="show_image_1"
             @if(!empty($product->image_1))
                 style="width: 175px; height: 175px;"
                 src={{ '../../../storage/' . $product->image_1}}
+            @elseif(session()->has('image_1'))
+                style="width: 175px; height: 175px;"
+                src={{ '../../../storage/' . session()->get('image_1')}}
             @endif>
         </p>
         <input type="file" class="" id="image_1" accept="jpg, jpeg, png, gif">
         <input type="hidden" id='image_1_id' name="image_1_id"
         @if(!empty($image_1->id))
             value={{ $image_1->id }}
+        @elseif (session()->has('image_1_id'))
+            value={{ session()->get('image_1_id') }}
         @endif>
         <p style='text-align:center;'>
             <input class='up_btn' type="button" id="upload_image_1" value="アップロード">
@@ -114,49 +121,72 @@
         <div id="image_1_err"></div>
     </div>
     <div>
-        <p style='text-align:center;'><label for="image_1">写真2</label></p>
+        <p style='text-align:center;'>写真2</p>
         <p style='text-align:center;'>
         <img id="show_image_2"
             @if(!empty($product->image_2))
                 style="width: 175px; height: 175px;"
                 src={{ '../../../storage/' . $product->image_2}}
+            @elseif(session()->has('image_2'))
+                style="width: 175px; height: 175px;"
+                src={{ '../../../storage/' . session()->get('image_2')}}
             @endif
         >
         </p>
         <input type="file" class="" id="image_2" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id='image_2_id' name="image_2_id">
+        <input type="hidden" id='image_2_id' name="image_2_id"
+        @if(!empty($image_2->id))
+            value={{ (int)$image_2->id }}
+        @elseif (session()->has('image_2_id'))
+            value={{ session()->get('image_2_id') }}
+        @endif>
         <p style='text-align:center;'>
             <input class='up_btn' type="button" id="upload_image_2" value="アップロード">
         </p>
         <div id="image_2_err"></div>
     </div>
     <div>
-        <p style='text-align:center;'><label for="image_1">写真3</label></p>
+        <p style='text-align:center;'>写真3</p>
         <p style='text-align:center;'>
         <img id="show_image_3"
             @if(!empty($product->image_3))
                 style="width: 175px; height: 175px;"
                 src={{ '../../../storage/' . $product->image_3}}
+            @elseif(session()->has('image_3'))
+                style="width: 175px; height: 175px;"
+                src={{ '../../../storage/' . session()->get('image_3')}}
             @endif
         ></p>
         <input type="file" class="" id="image_3" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id='image_3_id' name="image_3_id">
+        <input type="hidden" id='image_3_id' name="image_3_id"
+        @if(!empty($image_3->id))
+            value={{ $image_3->id }}
+        @elseif (session()->has('image_3_id'))
+            value={{ session()->get('image_3_id') }}
+        @endif>
         <p style='text-align:center;'>
             <input class='up_btn' type="button" id="upload_image_3" value="アップロード">
         </p>
         <div id="image_3_err"></div>
     </div>
     <div>
-        <p style='text-align:center;'><label for="image_1">写真4</label></p>
+        <p style='text-align:center;'>写真4</p>
         <p style='text-align:center;'>
         <img id="show_image_4"
             @if(!empty($product->image_3))
                 style="width: 175px; height: 175px;"
                 src={{ '../../../storage/' . $product->image_4}}
+            @elseif(session()->has('image_4'))
+                style="width: 175px; height: 175px;"
+                src={{ '../../../storage/' . session()->get('image_4')}}
             @endif
         ></p>
         <input type="file" class="" id="image_4" accept="jpg, jpeg, png, gif">
-        <input type="hidden" id='image_4_id' name="image_4_id">
+        <input type="hidden" id='image_4_id' name="image_4_id" @if(!empty($image_4->id))
+            value={{ $image_4->id }}
+        @elseif (session()->has('image_4_id'))
+            value={{ session()->get('image_4_id') }}
+        @endif>
         <p style='text-align:center;'>
             <input class='up_btn' type="button" id="upload_image_4" value="アップロード">
         </p>
