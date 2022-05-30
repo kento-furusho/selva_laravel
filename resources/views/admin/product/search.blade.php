@@ -81,7 +81,7 @@
           <tbody>
             <tr class="member_tds">
               <td class="member_td">{{ $product->id }}</td>
-              <td class="member_td">{{ $product->name }}</td>
+              <td class="member_td"><a style="text-decoration:none;" href='{{ route('admin.product.show', $product->id) }}'> {{ $product->name }}</a></td>
               <td class="member_td"><?= date('Y/m/d', strtotime($product->created_at))?></td>
               <td class="member_td">
                 <a href="{{ route('admin.product.edit', $product->id) }}" style="text-decoration:none;">

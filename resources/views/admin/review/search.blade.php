@@ -80,7 +80,7 @@
               <td class="member_td">{{ $review->id }}</td>
               <td class="member_td">{{ $review->product_id }}</td>
               <td class="member_td">{{ $review->evaluation }}</td>
-              <td class="member_td">{{ $review->comment }}</td>
+              <td class="member_td"><a style="text-decoration:none;" href='{{ route('admin.review.show', $review->id) }}'>{{ $review->comment }}</a></td>
               <td class="member_td"><?= date('Y/m/d', strtotime($review->created_at))?></td>
               <td class="member_td">
                 <a href="{{ route('admin.review.edit', $review->id) }}" style="text-decoration:none;">
