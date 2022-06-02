@@ -304,12 +304,12 @@ Route::get('/admin/review/create', [Admin\ReviewController::class, 'create'])
     ->name('admin.review.create');
 Route::get('/admin/review/{review}/edit', [Admin\ReviewController::class, 'edit'])
     ->name('admin.review.edit');
-// Route::post('/admin/review/create/store', [Admin\ReviewController::class, 'createStore'])
-//     ->name('admin.review.create.store');
+Route::post('/admin/review/create/store', [Admin\ReviewController::class, 'createStore'])
+    ->name('admin.review.create.store');
 Route::post('/admin/review/edit/{review}/store', [Admin\ReviewController::class, 'editStore'])
     ->name('admin.review.edit.store');
-// Route::post('/admin/review/create/send', [Admin\ReviewController::class, 'createSend'])
-//     ->name('admin.review.create.send');
+Route::post('/admin/review/create/send', [Admin\ReviewController::class, 'createSend'])
+    ->name('admin.review.create.send');
 Route::post('/admin/review/edit/{review}/send', [Admin\ReviewController::class, 'editSend'])
     ->name('admin.review.edit.send');
 Route::get('/admin/review/show/{review}', [Admin\ReviewController::class, 'show'])

@@ -12,6 +12,7 @@ use App\Models\Product_subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Administer;
+use Validator;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -82,7 +83,7 @@ class ProductController extends Controller
         $categories = Product_category::all();
         $subcategories = Product_subcategory::all();
         return view('admin.product.create_or_edit')
-            ->with(compact('product', 'categories', 'subcategories', 'image_1'));
+            ->with(compact('product', 'categories', 'subcategories', 'image_1', 'image_2', 'image_3', 'image_4'));
     }
     // サブカテゴリー取得
     public function get_subcategory(Request $request)
@@ -192,6 +193,33 @@ class ProductController extends Controller
             'explain.required' => '※商品説明は必須です',
             'explain.max' => '※商品説明は500文字以内で入力してください',
         ]);
+        $rules = [
+            'subcategory' => 'required',
+       ];
+        $validator = Validator::make($request->all(), $rules);
+        $validator->sometimes('subcategory', 'required | in:1,2,3,4,5', function($input){
+            return (int)$input->category === 1;
+        });
+        $validator->sometimes('subcategory', 'required | in:6,7,8,9,10', function($input){
+            return (int)$input->category === 2;
+        });
+        $validator->sometimes('subcategory', 'required | in:11,12,13,14,15', function($input){
+            return (int)$input->category === 3;
+        });
+        $validator->sometimes('subcategory', 'required | in:16,17,18,19,20', function($input){
+            return (int)$input->category === 4;
+        });
+        $validator->sometimes('subcategory', 'required | in:38,39,40,41,42,43', function($input){
+            return (int)$input->category === 5;
+        });
+        $validator->sometimes('subcategory', 'required | in:44,45,46,47,48', function($input){
+            return (int)$input->category === 6;
+        });
+        if($validator->fails()){
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(array('subcategory_err' => '※サブカテゴリーを正しく選択してください'));
+        }
         $request->session()->put([
             'name' => $request->name,
             'category' => $request->category,
@@ -215,23 +243,27 @@ class ProductController extends Controller
         $max = Product_category::all()->count();
         $sub_max = Product_subcategory::where('product_category_id', $request->category)->count();
         // ddd(Tmpimg::where('id', $request->image_1_id)->first()->path);
-        if(session()->has('image_1') || Tmpimg::where('id', $request->image_1_id)->first()->path === $product->image_1){
+        $uploaded_img_1 = Tmpimg::where('id', $request->image_1_id)->first();
+        $uploaded_img_2 = Tmpimg::where('id', $request->image_2_id)->first();
+        $uploaded_img_3 = Tmpimg::where('id', $request->image_3_id)->first();
+        $uploaded_img_4 = Tmpimg::where('id', $request->image_4_id)->first();
+        if(session()->has('image_1') || (!empty($uploaded_img_1) && $uploaded_img_1->path === $product->image_1)){
             $path_1 = $this->getImagePath($request->image_1_id);
             // ddd($path_1);
         } else {
             $path_1 = $this->moveImageToPublic($request->image_1_id);
         }
-        if(session()->has('image_2') || Tmpimg::where('id', $request->image_2_id)->first()->path === $product->image_2){
+        if(session()->has('image_2') || (!empty($uploaded_img_2) && $uploaded_img_2->path === $product->image_2)){
             $path_2 = $this->getImagePath($request->image_2_id);
         } else {
             $path_2 = $this->moveImageToPublic($request->image_2_id);
         }
-        if(session()->has('image_3') || Tmpimg::where('id', $request->image_3_id)->first()->path === $product->image_3){
+        if(session()->has('image_3') || (!empty($uploaded_img_3) && $uploaded_img_3->path === $product->image_3)){
             $path_3 = $this->getImagePath($request->image_3_id);
         } else {
             $path_3 = $this->moveImageToPublic($request->image_3_id);
         }
-        if(session()->has('image_4') || Tmpimg::where('id', $request->image_4_id)->first()->path === $product->image_4){
+        if(session()->has('image_4') || (!empty($uploaded_img_4) && $uploaded_img_4->path === $product->image_4)){
             $path_4 = $this->getImagePath($request->image_4_id);
         } else {
             $path_4 = $this->moveImageToPublic($request->image_4_id);
@@ -264,6 +296,33 @@ class ProductController extends Controller
             'explain.required' => '※商品説明は必須です',
             'explain.max' => '※商品説明は500文字以内で入力してください',
         ]);
+        $rules = [
+            'subcategory' => 'required',
+       ];
+        $validator = Validator::make($request->all(), $rules);
+        $validator->sometimes('subcategory', 'required | in:1,2,3,4,5', function($input){
+            return (int)$input->category === 1;
+        });
+        $validator->sometimes('subcategory', 'required | in:6,7,8,9,10', function($input){
+            return (int)$input->category === 2;
+        });
+        $validator->sometimes('subcategory', 'required | in:11,12,13,14,15', function($input){
+            return (int)$input->category === 3;
+        });
+        $validator->sometimes('subcategory', 'required | in:16,17,18,19,20', function($input){
+            return (int)$input->category === 4;
+        });
+        $validator->sometimes('subcategory', 'required | in:38,39,40,41,42,43', function($input){
+            return (int)$input->category === 5;
+        });
+        $validator->sometimes('subcategory', 'required | in:44,45,46,47,48', function($input){
+            return (int)$input->category === 6;
+        });
+        if($validator->fails()){
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(array('subcategory_err' => '※サブカテゴリーを正しく選択してください'));
+        }
         $request->session()->put([
             'name' => $request->name,
             'category' => $request->category,
@@ -326,9 +385,10 @@ class ProductController extends Controller
     }
     public function createSend(Request $request)
     {
-        $id = auth()->user()->id;
+        // ddd(Administer::first('id'));
+        // $id = auth()->user()->id;
         Product::create([
-            'member_id' => $id,
+            'member_id' => 74,
             'product_category_id' => $request['category_id'],
             'product_subcategory_id' => $request['subcategory_id'],
             'name' => $request['name'],
@@ -358,9 +418,8 @@ class ProductController extends Controller
     }
     public function editSend(Request $request, Product $product)
     {
-        $id = auth()->user()->id;
         Product::where('id', $product->id)->update([
-            'member_id' => $id,
+            'member_id' => 74,
             'product_category_id' => $request['category_id'],
             'product_subcategory_id' => $request['subcategory_id'],
             'name' => $request['name'],

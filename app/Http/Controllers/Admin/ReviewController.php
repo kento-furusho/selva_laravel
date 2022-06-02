@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\Product_category;
 use App\Models\Product_subcategory;
 use App\Models\Review;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 use App\Models\Administer;
 use App\Models\Product;
@@ -58,16 +59,46 @@ class ReviewController extends Controller
         return view('admin.review.search')
             ->with(compact('reviews'));
     }
-    // public function create()
-    // {
-    //     return view('admin.review.create_or_edit');
-    // }
+    public function create()
+    {
+        $products = Product::all();
+        return view('admin.review.create_or_edit')
+            ->with(compact('products'));
+    }
+    public function createStore(ReviewRequest $request)
+    {
+        $product = Product::where('id', $request->product_id)->first();
+        session()->put([
+            'product_id' => $request->product_id,
+            'evaluation' => $request->evaluation,
+            'comment' => $request->comment,
+        ]);
+        return view('admin.review.confirm')
+            ->with([
+                'evaluation' => $request->evaluation,
+                'comment' => $request->comment,
+                'product' => $product,
+            ]);
+    }
+    public function createSend(Request $request)
+    {
+        Review::create([
+            'member_id' => 74,
+            'product_id' => session()->get('product_id'),
+            'evaluation' => session()->get('evaluation'),
+            'comment' => session()->get('comment'),
+        ]);
+        session()->forget('product_id');
+        session()->forget('evaluation');
+        session()->forget('comment');
+        return redirect()->route('admin.review');
+    }
     public function edit(Review $review)
     {
         return view('admin.review.create_or_edit')
             ->with(compact('review'));
     }
-    public function editStore(Request $request, Review $review)
+    public function editStore(ReviewRequest $request, Review $review)
     {
         session()->put([
             'evaluation' => $request->evaluation,

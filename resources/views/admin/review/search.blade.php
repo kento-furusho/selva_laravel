@@ -5,6 +5,11 @@
     @section('search_title', '商品レビュー一覧')
 @endsection
 @section('content')
+<div class='btn-container'>
+    <a href="{{ route('admin.review.create') }}">
+        <input class="blue_btn" type="submit" value="レビュー登録">
+    </a>
+</div>
 <form method="get" action="{{ route('admin.review.search') }}">
     @csrf
     <table class="search_table">

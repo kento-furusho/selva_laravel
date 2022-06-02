@@ -94,6 +94,13 @@
         </div>
         @enderror
     </p>
+    <p>
+        @if(!empty($errors->first('subcategory_err')))
+        <div class="err_msg">
+            {{ $errors->first('subcategory_err') }}
+        </div>
+        @enderror
+    </p>
 
     <p>商品写真</p>
     <div>
@@ -136,7 +143,7 @@
         <input type="file" class="" id="image_2" accept="jpg, jpeg, png, gif">
         <input type="hidden" id='image_2_id' name="image_2_id"
         @if(!empty($image_2->id))
-            value={{ (int)$image_2->id }}
+            value={{ $image_2->id }}
         @elseif (session()->has('image_2_id'))
             value={{ session()->get('image_2_id') }}
         @endif>
@@ -283,6 +290,7 @@
                             console.log(data.path)
                             console.log(data.id)
                             $('#show_image_1').attr('src', 'show_image/'+data.id)
+                            $('#show_image_1').attr('style', "width: 175px; height: 175px;")
                             $('#image_1_id').attr('value', data.id)
                         }
                     }).fail((response) =>  {
@@ -325,6 +333,7 @@
                             console.log(data.path)
                             console.log(data.id)
                             $('#show_image_2').attr('src', 'show_image/'+data.id)
+                            $('#show_image_2').attr('style', "width: 175px; height: 175px;")
                             $('#image_2_id').attr('value', data.id)
                         }
                     }).fail((error) => {
@@ -367,6 +376,7 @@
                             console.log(data.path)
                             console.log(data.id)
                             $('#show_image_3').attr('src', 'show_image/'+data.id)
+                            $('#show_image_3').attr('style', "width: 175px; height: 175px;")
                             $('#image_3_id').attr('value', data.id)
                         }
                     }).fail((error) => {
@@ -409,6 +419,7 @@
                             console.log(data.path)
                             console.log(data.id)
                             $('#show_image_4').attr('src', 'show_image/'+data.id)
+                            $('#show_image_4').attr('style', "width: 175px; height: 175px;")
                             $('#image_4_id').attr('value', data.id)
                         }
                     }).fail((error) => {
