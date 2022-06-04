@@ -41,39 +41,50 @@
           <th class="member_th">
             ID
             <!------ 昇順降順ボタン ------>
-            @if(session()->get('order')==='desc')
-                <form style="display:inline-block;" action="{{ route('admin.review.order_asc') }}" method="get">
-                    <input type="hidden" name="id" value={{ Request::get('id') }}>
-                    <input type="hidden" name="free_word" value={{ Request::get('free_word') }}>
-                    <button class="arrow" type="submit">▼</button>
-                </form>
-            @elseif(session()->get('order')==='asc')
-                <form style="display:inline-block;" action="{{ route('admin.review.order_desc') }}" method="get">
-                    <input type="hidden" name="id" value={{ Request::get('id') }}>
-                    <input type="hidden" name="free_word" value={{ Request::get('free_word') }}>
-                    <button class="arrow" type="submit">▲</button>
-                </form>
-            @endif
+            <form style="display:inline-block;" action="{{ route('admin.review.orderChange') }}" method="get">
+                <input type="hidden" name="id" value={{ Request::get('id') }}>
+                <input type="hidden" name="free_word" value={{ Request::get('free_word') }}>
+                <input type="hidden" name="order" value=
+
+                @if(!empty(Request::get('order')) && Request::get('order')==='asc')
+                    {{ 'desc' }}
+                @else
+                    {{ 'asc' }}
+                @endif
+                >
+                <button class="arrow" type="submit">
+                    @if(!empty(Request::get('order')) && Request::get('order')==='asc')
+                        ▲
+                    @else
+                        ▼
+                    @endif
+                </button>
+            </form>
           </th>
           <th class="member_th">商品ID</th>
           <th class="member_th">評価</th>
           <th class="member_th">商品コメント</th>
           <th class="member_th">
             登録日時
-            <!------ 昇順降順ボタン ------>
-            @if(session()->get('order')==='desc')
-                <form style="display:inline-block;" action="{{ route('admin.review.order_asc') }}" method="get">
-                    <input type="hidden" name="id" value={{ Request::get('id') }}>
-                    <input type="hidden" name="free_word" value={{ Request::get('free_word') }}>
-                    <button class="arrow" type="submit">▼</button>
-                </form>
-            @elseif(session()->get('order')==='asc')
-                <form style="display:inline-block;" action="{{ route('admin.review.order_desc') }}" method="get">
-                    <input type="hidden" name="id" value={{ Request::get('id') }}>
-                    <input type="hidden" name="free_word" value={{ Request::get('free_word') }}>
-                    <button class="arrow" type="submit">▲</button>
-                </form>
-            @endif
+            <form style="display:inline-block;" action="{{ route('admin.review.orderChange') }}" method="get">
+                <input type="hidden" name="id" value={{ Request::get('id') }}>
+                <input type="hidden" name="free_word" value={{ Request::get('free_word') }}>
+                <input type="hidden" name="order" value=
+
+                @if(!empty(Request::get('order')) && Request::get('order')==='asc')
+                    {{ 'desc' }}
+                @else
+                    {{ 'asc' }}
+                @endif
+                >
+                <button class="arrow" type="submit">
+                    @if(!empty(Request::get('order')) && Request::get('order')==='asc')
+                        ▲
+                    @else
+                        ▼
+                    @endif
+                </button>
+            </form>
           </th>
           <th class="member_th">編集</th>
           <th>詳細</th>

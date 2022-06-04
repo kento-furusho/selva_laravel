@@ -25,7 +25,10 @@ class ReviewController extends Controller
     {
         $id = $request->id;
         $free_word = $request->free_word;
-
+        $request->validate([
+            'id' => 'nullable|integer',
+            'free_word' => 'nullable|string'
+        ]);
         if(!isset($id)&&!isset($free_word)){
             session()->forget('order');
             session()->put('order', 'desc');
@@ -39,23 +42,16 @@ class ReviewController extends Controller
         return view('admin.review.search')
             ->with(compact('reviews'));
     }
-    public function orderDesc(Request $request)
+    public function orderChange(Request $request)
     {
         $id = $request->id;
         $free_word = $request->free_word;
-        $reviews = Review::search($id, $free_word)->orderBy('id', 'desc')->paginate(10);
-        session()->forget('order');
-        session()->put('order', 'desc');
-        return view('admin.review.search')
-            ->with(compact('reviews'));
-    }
-    public function orderAsc(Request $request)
-    {
-        $id = $request->id;
-        $free_word = $request->free_word;
-        $reviews = Review::search($id, $free_word)->orderBy('id', 'asc')->paginate(10);
-        session()->forget('order');
-        session()->put('order', 'asc');
+        $order = $request->order;
+        if($order === 'asc') {
+            $reviews = Review::search($id, $free_word)->orderBy('id', 'asc')->paginate(10);
+        } elseif($order === 'desc') {
+            $reviews = Review::search($id, $free_word)->orderBy('id', 'desc')->paginate(10);
+        }
         return view('admin.review.search')
             ->with(compact('reviews'));
     }

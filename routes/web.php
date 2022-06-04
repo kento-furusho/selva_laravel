@@ -296,10 +296,12 @@ Route::get('/admin/product/{product}/delete', [Admin\ProductController::class, '
 Route::get('/admin/review', [Admin\ReviewController::class, 'index'])->name('admin.review')->middleware('auth.admins:administers');
 Route::get('/admin/review/search', [Admin\ReviewController::class, 'search'])
     ->name('admin.review.search')->middleware('auth.admins:administers');
-Route::get('/admin/review/search/order_desc', [Admin\ReviewController::class, 'orderDesc'])
-    ->name('admin.review.order_desc');
-Route::get('/admin/review/search/order_asc', [Admin\ReviewController::class, 'orderAsc'])
-    ->name('admin.review.order_asc');
+Route::get('/admin/review/search/order_change', [Admin\ReviewController::class, 'orderChange'])
+    ->name('admin.review.orderChange');
+// Route::get('/admin/review/search/order_desc', [Admin\ReviewController::class, 'orderDesc'])
+//     ->name('admin.review.order_desc');
+// Route::get('/admin/review/search/order_asc', [Admin\ReviewController::class, 'orderAsc'])
+//     ->name('admin.review.order_asc');
 Route::get('/admin/review/create', [Admin\ReviewController::class, 'create'])
     ->name('admin.review.create');
 Route::get('/admin/review/{review}/edit', [Admin\ReviewController::class, 'edit'])
